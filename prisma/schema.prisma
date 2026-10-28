@@ -1,0 +1,303 @@
+// hrm data model — see aaid_artifacts/planning/architecture/architecture.md "Data Model Overview".
+// SQLite now; PostgreSQL-ready (ADR-003). Scores are integer hundredths (ADR-004).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ───────────────────────────── Auth ─────────────────────────────
+
+model AdminUser {
+  id                String       @id @default(cuid())
+  email             String       @unique
+  passwordHash      String
+  createdAt         DateTime     @default(now())
+  passwordChangedAt DateTime     @default(now())
+  lastLoginAt       DateTime?
+  sessions          Session[]
+  importBatches     ImportBatch[]
+  auditEvents       AuditEvent[]
+  settingsUpdates   AppSettings[]
+}
+
+model Session {
+  id         String    @id @default(cuid())
+  tokenHash  String    @unique
+  userId     String
+  user       AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  lastSeenAt DateTime  @default(now())
+  expiresAt  DateTime
+  userAgent  String?
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+/// Lockout state per normalised email, including unknown emails (ADR-005).
+model LoginThrottle {
+  email       String    @id
+  failures    Int       @default(0)
+  windowStart DateTime
+  lockedUntil DateTime?
+}
+
+// ─────────────────────── Reference data ───────────────────────
+
+enum AliasSource {
+  CANONICAL
+  RENAME
+  IMPORT
+  MERGE
+}
+
+model Team {
+  id        String      @id @default(cuid())
+  name      String
+  sortOrder Int         @default(0)
+  createdAt DateTime    @default(now())
+  aliases   TeamAlias[]
+  employees Employee[]
+}
+
+model TeamAlias {
+  id             String      @id @default(cuid())
+  normalisedName String      @unique
+  teamId         String
+  team           Team        @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  source         AliasSource
+
+  @@index([teamId])
+}
+
+model Designation {
+  id        String             @id @default(cuid())
+  name      String
+  sortOrder Int                @default(0)
+  createdAt DateTime           @default(now())
+  aliases   DesignationAlias[]
+  employees Employee[]
+}
+
+model DesignationAlias {
+  id             String      @id @default(cuid())
+  normalisedName String      @unique
+  designationId  String
+  designation    Designation @relation(fields: [designationId], references: [id], onDelete: Cascade)
+  source         AliasSource
+
+  @@index([designationId])
+}
+
+model Sprint {
+  id        String    @id @default(cuid())
+  code      String    @unique
+  number    Int       @unique
+  startDate DateTime?
+  endDate   DateTime?
+  createdAt DateTime  @default(now())
+  scores    Score[]
+}
+
+// ───────────────────────── Employees ─────────────────────────
+
+enum EmployeeStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model Employee {
+  id                String          @id @default(cuid())
+  displayName       String
+  /// Indexed copy of the canonical normalised name — NOT unique; EmployeeAlias is the namespace (ADR-018).
+  normalisedName    String
+  employeeCode      String?         @unique
+  email             String?
+  joiningDate       DateTime?
+  status            EmployeeStatus  @default(ACTIVE)
+  teamId            String
+  team              Team            @relation(fields: [teamId], references: [id], onDelete: Restrict)
+  designationId     String
+  designation       Designation     @relation(fields: [designationId], references: [id], onDelete: Restrict)
+  teamLocked        Boolean         @default(false)
+  designationLocked Boolean         @default(false)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  aliases           EmployeeAlias[]
+  scores            Score[]
+
+  @@index([normalisedName])
+  @@index([teamId])
+  @@index([designationId])
+  @@index([status])
+}
+
+model EmployeeAlias {
+  id             String      @id @default(cuid())
+  normalisedName String      @unique
+  employeeId     String
+  employee       Employee    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  source         AliasSource
+
+  @@index([employeeId])
+}
+
+// ─────────────────────────── Scores ───────────────────────────
+
+enum ScoreStatus {
+  SCORED
+  RUN
+  NOT_SCORED
+}
+
+/// One employee × sprint cell. valueCenti (0–1000) is present iff status = SCORED (ADR-004).
+model Score {
+  employeeId    String
+  employee      Employee     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  sprintId      String
+  sprint        Sprint       @relation(fields: [sprintId], references: [id], onDelete: Cascade)
+  status        ScoreStatus
+  valueCenti    Int?
+  sourceBatchId String?
+  sourceBatch   ImportBatch? @relation(fields: [sourceBatchId], references: [id], onDelete: SetNull)
+  updatedAt     DateTime     @updatedAt
+
+  @@id([employeeId, sprintId])
+  @@index([sprintId])
+  @@index([sourceBatchId])
+}
+
+// ─────────────────────────── Imports ───────────────────────────
+
+enum BatchStatus {
+  PREVIEW
+  COMMITTED
+  ROLLED_BACK
+  DISCARDED
+  EXPIRED
+}
+
+model ImportBatch {
+  id             String         @id @default(cuid())
+  fileName       String
+  fileHash       String
+  /// Storage key under DATA_DIR/uploads; null once purged by retention or erasure (ADR-017).
+  fileKey        String?
+  fileSize       Int
+  status         BatchStatus
+  baseRevision   Int
+  commitRevision Int?
+  sheetName      String
+  headerRow      Int
+  sprints        Json
+  /// Normalised parsed rows — previews only; cleared after commit/discard/expiry.
+  parsed         Json?
+  summary        Json
+  actorId        String
+  actor          AdminUser      @relation(fields: [actorId], references: [id], onDelete: Restrict)
+  createdAt      DateTime       @default(now())
+  expiresAt      DateTime
+  committedAt    DateTime?
+  rolledBackAt   DateTime?
+  issues         ImportIssue[]
+  changes        ImportChange[]
+  scores         Score[]
+
+  @@index([status, createdAt])
+  @@index([fileHash])
+}
+
+enum IssueSeverity {
+  ERROR
+  WARNING
+}
+
+model ImportIssue {
+  id            String        @id @default(cuid())
+  batchId       String
+  batch         ImportBatch   @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  severity      IssueSeverity
+  code          String
+  row           Int?
+  column        String?
+  employeeName  String?
+  message       String
+  sheetValue    Float?
+  computedValue Float?
+
+  @@index([batchId, severity])
+}
+
+enum JournalEntity {
+  EMPLOYEE
+  EMPLOYEE_ALIAS
+  SCORE
+  TEAM
+  TEAM_ALIAS
+  DESIGNATION
+  DESIGNATION_ALIAS
+  SPRINT
+}
+
+enum JournalOp {
+  CREATE
+  UPDATE
+}
+
+/// Rollback journal (ADR-007).
+model ImportChange {
+  id        String        @id @default(cuid())
+  batchId   String
+  batch     ImportBatch   @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  seq       Int
+  entity    JournalEntity
+  entityKey String
+  op        JournalOp
+  before    Json?
+  after     Json
+
+  @@unique([batchId, seq])
+  @@index([entity, entityKey])
+}
+
+// ─────────────────────── Settings & state ───────────────────────
+
+/// KPI policy singleton (ADR-015); `data` is validated by the KpiSettings schema.
+model AppSettings {
+  id        Int        @id @default(1)
+  data      Json
+  updatedAt DateTime   @updatedAt
+  updatedBy String?
+  updater   AdminUser? @relation(fields: [updatedBy], references: [id], onDelete: SetNull)
+}
+
+/// Revisions for optimistic concurrency and ETags (ADR-007).
+model SystemState {
+  id               Int @id @default(1)
+  scoreRevision    Int @default(0)
+  settingsRevision Int @default(0)
+}
+
+// ─────────────────────────── Audit ───────────────────────────
+
+model AuditEvent {
+  id       String     @id @default(cuid())
+  at       DateTime   @default(now())
+  actorId  String?
+  actor    AdminUser? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  action   String
+  entity   String?
+  entityId String?
+  before   Json?
+  after    Json?
+  meta     Json?
+
+  @@index([at])
+  @@index([action, at])
+  @@index([entity, entityId])
+}

@@ -1,0 +1,147 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens — aaid_artifacts/planning/design/design.md.
+ * Brand from the reference KPI report; text-bearing roles use AA-safe variants
+ * (#C8881A amber and #1E8E4E green are chart-only).
+ */
+:root {
+  --hrm-navy: #10233f;
+  --hrm-teal: #0f6e78;
+  --hrm-teal-strong: #0b5961;
+  --hrm-teal2: #13909c;
+  --hrm-page: #f0f3f6;
+  --hrm-surface: #ffffff;
+  --hrm-ink: #1f2933;
+  --hrm-muted: #5a6470;
+  --hrm-line: #d5dee5;
+  --hrm-zebra: #f6f9fb;
+  --hrm-ltbg: #eef3f6;
+  --hrm-band-out: #17733f;
+  --hrm-band-exc: #0f6e78;
+  --hrm-band-meet: #8a5a00;
+  --hrm-band-ni: #c0392b;
+  --hrm-chart-out: #1e8e4e;
+  --hrm-chart-exc: #0f6e78;
+  --hrm-chart-meet: #c8881a;
+  --hrm-chart-ni: #c0392b;
+  --hrm-focus: #13909c;
+  --hrm-warning-bg: #fff8e7;
+  --hrm-warning-border: #ebd9a8;
+  --hrm-warning-text: #6b5316;
+}
+
+/* Dark tokens are opt-in (data-theme="dark") until every screen is audited in dark mode — design.md DQ-03. */
+@media screen {
+  :root[data-theme='dark'] {
+    --hrm-navy: #0b1a2f;
+    --hrm-teal: #2ba7b3;
+    --hrm-teal-strong: #4fc1cc;
+    --hrm-page: #0f1722;
+    --hrm-surface: #16212f;
+    --hrm-ink: #e6edf3;
+    --hrm-muted: #9aa8b6;
+    --hrm-line: #2a3a4d;
+    --hrm-zebra: #1a2737;
+    --hrm-ltbg: #1a2737;
+    --hrm-band-out: #4cc38a;
+    --hrm-band-exc: #2ba7b3;
+    --hrm-band-meet: #e0a33a;
+    --hrm-band-ni: #f07466;
+    --hrm-focus: #4fc1cc;
+    --hrm-warning-bg: #2e2614;
+    --hrm-warning-border: #6b5316;
+    --hrm-warning-text: #f3d58c;
+  }
+}
+
+@theme inline {
+  --color-navy: var(--hrm-navy);
+  --color-teal: var(--hrm-teal);
+  --color-teal-strong: var(--hrm-teal-strong);
+  --color-teal2: var(--hrm-teal2);
+  --color-page: var(--hrm-page);
+  --color-surface: var(--hrm-surface);
+  --color-ink: var(--hrm-ink);
+  --color-muted: var(--hrm-muted);
+  --color-line: var(--hrm-line);
+  --color-zebra: var(--hrm-zebra);
+  --color-ltbg: var(--hrm-ltbg);
+  --color-band-out: var(--hrm-band-out);
+  --color-band-exc: var(--hrm-band-exc);
+  --color-band-meet: var(--hrm-band-meet);
+  --color-band-ni: var(--hrm-band-ni);
+  --color-warning-bg: var(--hrm-warning-bg);
+  --color-warning-border: var(--hrm-warning-border);
+  --color-warning-text: var(--hrm-warning-text);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html,
+body {
+  background: var(--hrm-page);
+  color: var(--hrm-ink);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+:focus-visible {
+  outline: 2px solid var(--hrm-focus);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Print (ADR-012, US-07-01): A4 either orientation, no panel split across pages, band colours kept. */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+  html,
+  body {
+    background: #fff;
+    font-size: 12px;
+  }
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  section,
+  .break-inside-avoid {
+    break-inside: avoid;
+  }
+  .print-root {
+    max-width: none;
+    padding: 0;
+  }
+  /* One appraisal per A4 page (US-07-04/05). */
+  .appraisal-page {
+    break-after: page;
+    min-height: 270mm;
+  }
+  .appraisal-page:last-child {
+    break-after: auto;
+  }
+}
+
+@media screen {
+  .appraisal-page + .appraisal-page {
+    margin-top: 2rem;
+    border-top: 2px dashed var(--hrm-line);
+    padding-top: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

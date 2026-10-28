@@ -1,0 +1,31 @@
+.aaid/state.json
+.aaid/agent-writes.jsonl
+.env
+.env.*
+!.env.example
+
+# dependencies & build output
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# runtime data (database, uploads, backups) — never commit
+data/
+
+# generated Prisma client
+generated/
+
+# test output
+coverage/
+test-results/
+playwright-report/
+.vitest/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# personal Claude Code settings
+.claude/settings.local.json

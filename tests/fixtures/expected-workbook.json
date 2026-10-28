@@ -1,0 +1,1938 @@
+{
+  "source": "KPI Master Sheet (2).xlsx",
+  "sheetName": "Compile Sheet ",
+  "sprints": [
+    "S122",
+    "S123",
+    "S124",
+    "S125",
+    "S126",
+    "S127",
+    "S128",
+    "S129",
+    "S130",
+    "S131",
+    "S132",
+    "S133",
+    "S134",
+    "S135",
+    "S136",
+    "S137",
+    "S138"
+  ],
+  "emptySprintColumns": [
+    "S139",
+    "S140",
+    "S141"
+  ],
+  "scoredCells": 560,
+  "lastNWindow": {
+    "size": 6,
+    "from": "S133",
+    "to": "S138"
+  },
+  "employees": [
+    {
+      "name": "Bishal Stha",
+      "team": "Team Bravo",
+      "designation": "Team Lead",
+      "cells": {
+        "S122": "RUN",
+        "S123": "RUN",
+        "S124": "RUN",
+        "S125": 10,
+        "S126": 9.2,
+        "S127": 9,
+        "S128": 9,
+        "S129": 10,
+        "S130": 8.33,
+        "S131": 8.67,
+        "S132": 9.4,
+        "S133": 8.67,
+        "S134": 8.67,
+        "S135": 6,
+        "S136": 9.2,
+        "S137": 9.6,
+        "S138": 8.67
+      },
+      "sprintsCounted": 14,
+      "sheetTotal": 124.41000000000001,
+      "sheetAverage": 8.886428571428572,
+      "overallRank": 11,
+      "lastN": {
+        "average": 8.468333333333334,
+        "sprints": 6,
+        "rank": 29
+      }
+    },
+    {
+      "name": "Niba Tandukar",
+      "team": "DevOps",
+      "designation": "Team Lead",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": 8.33,
+        "S130": 10,
+        "S131": 10,
+        "S132": 9.8,
+        "S133": 8.33,
+        "S134": 9.8,
+        "S135": 10,
+        "S136": 9.8,
+        "S137": 9.2,
+        "S138": 10
+      },
+      "sprintsCounted": 10,
+      "sheetTotal": 95.25999999999999,
+      "sheetAverage": 9.526,
+      "overallRank": 4,
+      "lastN": {
+        "average": 9.521666666666668,
+        "sprints": 6,
+        "rank": 5
+      }
+    },
+    {
+      "name": "Dharma Gurung",
+      "team": "Blaze Warrior",
+      "designation": "Team Lead",
+      "cells": {
+        "S122": 10,
+        "S123": 8.67,
+        "S124": 6.5,
+        "S125": 8.33,
+        "S126": 9,
+        "S127": 6.5,
+        "S128": 4.64,
+        "S129": 9,
+        "S130": 9,
+        "S131": 8.33,
+        "S132": 10,
+        "S133": 7,
+        "S134": 9,
+        "S135": 9,
+        "S136": 8.33,
+        "S137": 6.25,
+        "S138": 7
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 136.55,
+      "sheetAverage": 8.032352941176471,
+      "overallRank": 21,
+      "lastN": {
+        "average": 7.763333333333333,
+        "sprints": 6,
+        "rank": 42
+      }
+    },
+    {
+      "name": "Sanjay Khadka",
+      "team": "Team Sanjay",
+      "designation": "Team Lead",
+      "cells": {
+        "S122": 8.67,
+        "S123": 10,
+        "S124": 8.67,
+        "S125": "N/A",
+        "S126": 9.4,
+        "S127": 7,
+        "S128": 8.33,
+        "S129": 6,
+        "S130": 6,
+        "S131": 9.2,
+        "S132": 6.5,
+        "S133": 8.33,
+        "S134": 8.33,
+        "S135": 8.33,
+        "S136": 6.5,
+        "S137": 8.33,
+        "S138": 6.5
+      },
+      "sprintsCounted": 16,
+      "sheetTotal": 126.08999999999999,
+      "sheetAverage": 7.880624999999999,
+      "overallRank": 24,
+      "lastN": {
+        "average": 7.72,
+        "sprints": 6,
+        "rank": 43
+      }
+    },
+    {
+      "name": "Bimal Sharma",
+      "team": "Team Bimal",
+      "designation": "Team Lead",
+      "cells": {
+        "S122": 6.5,
+        "S123": 8.33,
+        "S124": 6.54,
+        "S125": 9.2,
+        "S126": 6.4,
+        "S127": 7.03,
+        "S128": 4.81,
+        "S129": 5.47,
+        "S130": 5.47,
+        "S131": 8.33,
+        "S132": 8.33,
+        "S133": 6,
+        "S134": 9.4,
+        "S135": 8.67,
+        "S136": 9,
+        "S137": 8.17,
+        "S138": 6
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 123.65,
+      "sheetAverage": 7.273529411764706,
+      "overallRank": 38,
+      "lastN": {
+        "average": 7.873333333333334,
+        "sprints": 6,
+        "rank": 40
+      }
+    },
+    {
+      "name": "Bikash Bhandari",
+      "team": "Team Dhangadhi",
+      "designation": "Team Lead",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": 6,
+        "S131": 7,
+        "S132": 6,
+        "S133": 9.4,
+        "S134": 6.5,
+        "S135": 6,
+        "S136": 6.5,
+        "S137": 7,
+        "S138": 7
+      },
+      "sprintsCounted": 9,
+      "sheetTotal": 61.4,
+      "sheetAverage": 6.822222222222222,
+      "overallRank": 45,
+      "lastN": {
+        "average": 7.066666666666666,
+        "sprints": 6,
+        "rank": 47
+      }
+    },
+    {
+      "name": "Ram Chandra Dahal",
+      "team": "Run Team",
+      "designation": "SSE",
+      "cells": {
+        "S122": 6.55,
+        "S123": 7,
+        "S124": 6.77,
+        "S125": 8.9,
+        "S126": 8.33,
+        "S127": 9,
+        "S128": 7.02,
+        "S129": 7.14,
+        "S130": "N/A",
+        "S131": 8.33,
+        "S132": 9.6,
+        "S133": 8.33,
+        "S134": 7,
+        "S135": 9.2,
+        "S136": 8.67,
+        "S137": 9.8,
+        "S138": 9.7
+      },
+      "sprintsCounted": 16,
+      "sheetTotal": 131.33999999999997,
+      "sheetAverage": 8.208749999999998,
+      "overallRank": 17,
+      "lastN": {
+        "average": 8.783333333333333,
+        "sprints": 6,
+        "rank": 18
+      }
+    },
+    {
+      "name": "Abhinash Neupane",
+      "team": "Run Team",
+      "designation": "SSE",
+      "cells": {
+        "S122": 8.28,
+        "S123": 7,
+        "S124": 7.64,
+        "S125": "RUN",
+        "S126": "RUN",
+        "S127": 5.4,
+        "S128": 6.4,
+        "S129": 7.12,
+        "S130": "N/A",
+        "S131": 10,
+        "S132": 10,
+        "S133": 9.2,
+        "S134": 9.2,
+        "S135": 7,
+        "S136": 7,
+        "S137": 9.2,
+        "S138": 9.4
+      },
+      "sprintsCounted": 14,
+      "sheetTotal": 112.84,
+      "sheetAverage": 8.06,
+      "overallRank": 20,
+      "lastN": {
+        "average": 8.499999999999998,
+        "sprints": 6,
+        "rank": 27
+      }
+    },
+    {
+      "name": "Anuj Magar",
+      "team": "Team Bravo",
+      "designation": "SSE",
+      "cells": {
+        "S122": "RUN",
+        "S123": 6,
+        "S124": "RUN",
+        "S125": 9.55,
+        "S126": 6.7,
+        "S127": 5.95,
+        "S128": 5.92,
+        "S129": 7.01,
+        "S130": 5.09,
+        "S131": 9,
+        "S132": 7,
+        "S133": 8.85,
+        "S134": 8.95,
+        "S135": 8.95,
+        "S136": 9.55,
+        "S137": 9.2,
+        "S138": 8.95
+      },
+      "sprintsCounted": 15,
+      "sheetTotal": 116.67,
+      "sheetAverage": 7.7780000000000005,
+      "overallRank": 27,
+      "lastN": {
+        "average": 9.075000000000001,
+        "sprints": 6,
+        "rank": 13
+      }
+    },
+    {
+      "name": "Ravi Gupta",
+      "team": "DevOps",
+      "designation": "SSE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": 6.84,
+        "S130": 5.86,
+        "S131": 10,
+        "S132": 9.4,
+        "S133": 7,
+        "S134": 10,
+        "S135": 8.67,
+        "S136": 10,
+        "S137": 10,
+        "S138": 9
+      },
+      "sprintsCounted": 10,
+      "sheetTotal": 86.77000000000001,
+      "sheetAverage": 8.677000000000001,
+      "overallRank": 12,
+      "lastN": {
+        "average": 9.111666666666666,
+        "sprints": 6,
+        "rank": 11
+      }
+    },
+    {
+      "name": "Nirjal Dahal",
+      "team": "Blaze Warrior",
+      "designation": "SSE",
+      "cells": {
+        "S122": 6.08,
+        "S123": 5.87,
+        "S124": 5.92,
+        "S125": 6.58,
+        "S126": 6,
+        "S127": 5.84,
+        "S128": 7,
+        "S129": 5.43,
+        "S130": 5.81,
+        "S131": 7,
+        "S132": 9.2,
+        "S133": 9.2,
+        "S134": 9.35,
+        "S135": 8.67,
+        "S136": 9.2,
+        "S137": 6.75,
+        "S138": 8.67
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 122.57,
+      "sheetAverage": 7.21,
+      "overallRank": 40,
+      "lastN": {
+        "average": 8.64,
+        "sprints": 6,
+        "rank": 25
+      }
+    },
+    {
+      "name": "BK Krishna Magar",
+      "team": "Team Bravo",
+      "designation": "SSE",
+      "cells": {
+        "S122": 5.14,
+        "S123": 6.28,
+        "S124": 4,
+        "S125": 5.76,
+        "S126": 9,
+        "S127": 5.72,
+        "S128": 6,
+        "S129": 6.5,
+        "S130": 7.16,
+        "S131": 9.2,
+        "S132": 9,
+        "S133": 9.6,
+        "S134": 8.67,
+        "S135": 8.33,
+        "S136": 6.5,
+        "S137": 8.33,
+        "S138": 6
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 121.19,
+      "sheetAverage": 7.128823529411765,
+      "overallRank": 42,
+      "lastN": {
+        "average": 7.905,
+        "sprints": 6,
+        "rank": 37
+      }
+    },
+    {
+      "name": "Susan Mool",
+      "team": "Team Bimal",
+      "designation": "SSE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": 10,
+        "S137": 9,
+        "S138": 8.67
+      },
+      "sprintsCounted": 3,
+      "sheetTotal": 27.67,
+      "sheetAverage": 9.223333333333334,
+      "overallRank": 5,
+      "lastN": {
+        "average": 9.223333333333334,
+        "sprints": 3,
+        "rank": 7
+      }
+    },
+    {
+      "name": "Shreeya Shakya",
+      "team": "Team Bravo",
+      "designation": "SE",
+      "cells": {
+        "S122": 9.2,
+        "S123": 6.95,
+        "S124": 6.5,
+        "S125": 8.7,
+        "S126": 8.83,
+        "S127": 10,
+        "S128": 9.6,
+        "S129": 7.68,
+        "S130": 6.72,
+        "S131": 9.2,
+        "S132": 9.45,
+        "S133": 9.95,
+        "S134": 9.1,
+        "S135": 7.15,
+        "S136": 7.45,
+        "S137": 8.33,
+        "S138": 10
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 144.81000000000003,
+      "sheetAverage": 8.518235294117648,
+      "overallRank": 14,
+      "lastN": {
+        "average": 8.663333333333332,
+        "sprints": 6,
+        "rank": 24
+      }
+    },
+    {
+      "name": "Sajjan Khanal",
+      "team": "DevOps",
+      "designation": "SE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": 7.31,
+        "S130": 5.25,
+        "S131": 10,
+        "S132": 9.4,
+        "S133": 9.4,
+        "S134": 10,
+        "S135": 10,
+        "S136": 10,
+        "S137": 9.6
+      },
+      "sprintsCounted": 9,
+      "sheetTotal": 80.96,
+      "sheetAverage": 8.995555555555555,
+      "overallRank": 8,
+      "lastN": {
+        "average": 9.8,
+        "sprints": 5,
+        "rank": 2
+      }
+    },
+    {
+      "name": "Susmita Parajuli",
+      "team": "Blaze Warrior",
+      "designation": "SE",
+      "cells": {
+        "S122": 7.21,
+        "S123": 7.25,
+        "S124": 6.8,
+        "S125": 6.3,
+        "S126": 7.28,
+        "S127": 6.8,
+        "S128": 7.4,
+        "S129": 8.63,
+        "S130": 5.9,
+        "S131": 8.43,
+        "S132": 8.68,
+        "S133": 9.4,
+        "S134": 6.7,
+        "S135": 9.35,
+        "S136": 9.35,
+        "S137": 6.75,
+        "S138": 8.63
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 130.86,
+      "sheetAverage": 7.69764705882353,
+      "overallRank": 29,
+      "lastN": {
+        "average": 8.363333333333335,
+        "sprints": 6,
+        "rank": 31
+      }
+    },
+    {
+      "name": "Rashik Shrestha",
+      "team": "Run Team",
+      "designation": "SE",
+      "cells": {
+        "S122": 9.6,
+        "S123": 6.84,
+        "S124": 7,
+        "S125": 6.25,
+        "S126": 9,
+        "S127": 9.2,
+        "S128": "RUN",
+        "S129": 7,
+        "S130": "N/A",
+        "S131": 8.33,
+        "S132": 9,
+        "S133": 8.33,
+        "S134": 7,
+        "S135": 9.2,
+        "S136": 9.4,
+        "S137": 9.2,
+        "S138": 9
+      },
+      "sprintsCounted": 15,
+      "sheetTotal": 124.35000000000001,
+      "sheetAverage": 8.290000000000001,
+      "overallRank": 16,
+      "lastN": {
+        "average": 8.688333333333333,
+        "sprints": 6,
+        "rank": 20
+      }
+    },
+    {
+      "name": "Aashish Katwal",
+      "team": "Team Bravo",
+      "designation": "SE",
+      "cells": {
+        "S122": 7.7,
+        "S123": 7.3,
+        "S124": 8.33,
+        "S125": 4.49,
+        "S126": 6.5,
+        "S127": 6.36,
+        "S128": 6.95,
+        "S129": 8.33,
+        "S130": 5.85,
+        "S131": 7,
+        "S132": 9.15,
+        "S133": 9.7,
+        "S134": 8.9,
+        "S135": 7,
+        "S136": 8.33,
+        "S137": 8.67,
+        "S138": 8.33
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 128.89000000000001,
+      "sheetAverage": 7.581764705882354,
+      "overallRank": 35,
+      "lastN": {
+        "average": 8.488333333333333,
+        "sprints": 6,
+        "rank": 28
+      }
+    },
+    {
+      "name": "Sagar Maharjan",
+      "team": "Blaze Warrior",
+      "designation": "SE",
+      "cells": {
+        "S122": 6.48,
+        "S123": 8.33,
+        "S124": 6.45,
+        "S125": 5.48,
+        "S126": 5.81,
+        "S127": 7.09,
+        "S128": 7,
+        "S129": 6.45,
+        "S130": 6.5,
+        "S131": 8.62,
+        "S132": 9.85,
+        "S133": 9.1,
+        "S134": 9.4,
+        "S135": 9.05,
+        "S136": 8.95,
+        "S137": 9.8,
+        "S138": 8.67
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 133.03,
+      "sheetAverage": 7.825294117647059,
+      "overallRank": 26,
+      "lastN": {
+        "average": 9.161666666666667,
+        "sprints": 6,
+        "rank": 9
+      }
+    },
+    {
+      "name": "Sayara Dangol",
+      "team": "Team Bimal",
+      "designation": "SE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": 5.19,
+        "S126": 8.17,
+        "S127": 6.5,
+        "S128": 6.49,
+        "S129": 6.03,
+        "S130": 8.33,
+        "S131": 6,
+        "S132": 6.85,
+        "S133": 9.8,
+        "S134": 8.33,
+        "S135": 8.62,
+        "S136": 9.6,
+        "S137": 8.33,
+        "S138": 9.04
+      },
+      "sprintsCounted": 14,
+      "sheetTotal": 107.28,
+      "sheetAverage": 7.662857142857143,
+      "overallRank": 31,
+      "lastN": {
+        "average": 8.953333333333333,
+        "sprints": 6,
+        "rank": 15
+      }
+    },
+    {
+      "name": "Jeevan Joshi",
+      "team": "Run Team",
+      "designation": "SE",
+      "cells": {
+        "S122": "RUN",
+        "S123": "RUN",
+        "S124": "RUN",
+        "S125": "RUN",
+        "S126": "RUN",
+        "S127": "RUN",
+        "S128": "RUN",
+        "S129": 6.4,
+        "S130": "N/A",
+        "S131": 9.8,
+        "S132": 10,
+        "S133": 9,
+        "S134": 10,
+        "S135": 9.2,
+        "S136": 8.33,
+        "S137": 8.67,
+        "S138": 9.4
+      },
+      "sprintsCounted": 9,
+      "sheetTotal": 80.80000000000001,
+      "sheetAverage": 8.97777777777778,
+      "overallRank": 9,
+      "lastN": {
+        "average": 9.1,
+        "sprints": 6,
+        "rank": 12
+      }
+    },
+    {
+      "name": "Ankit Belal",
+      "team": "Team Dhangadhi",
+      "designation": "SE",
+      "cells": {
+        "S122": 3.75,
+        "S123": 8.17,
+        "S124": 6.5,
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": 6.87,
+        "S129": 6.63,
+        "S130": 6,
+        "S131": 6,
+        "S132": 7,
+        "S133": 9,
+        "S134": 10,
+        "S135": 9.8,
+        "S136": 6,
+        "S137": 9,
+        "S138": 8.67
+      },
+      "sprintsCounted": 14,
+      "sheetTotal": 103.39,
+      "sheetAverage": 7.385,
+      "overallRank": 36,
+      "lastN": {
+        "average": 8.745,
+        "sprints": 6,
+        "rank": 19
+      }
+    },
+    {
+      "name": "Anish Gho Shrestha",
+      "team": "Team Bimal",
+      "designation": "SE",
+      "cells": {
+        "S122": 6,
+        "S123": 5.33,
+        "S124": 5.15,
+        "S125": 6.21,
+        "S126": 5.33,
+        "S127": 6.29,
+        "S128": 4.98,
+        "S129": 6.5,
+        "S130": 6.65,
+        "S131": 6.3,
+        "S132": 8.67,
+        "S133": 10,
+        "S134": 9.35,
+        "S135": 8.62,
+        "S136": 7,
+        "S137": 7,
+        "S138": 6.75
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 116.13,
+      "sheetAverage": 6.831176470588235,
+      "overallRank": 44,
+      "lastN": {
+        "average": 8.12,
+        "sprints": 6,
+        "rank": 34
+      }
+    },
+    {
+      "name": "Suyog Acharya",
+      "team": "Blaze Warrior",
+      "designation": "SE",
+      "cells": {
+        "S122": 7,
+        "S123": 6.1,
+        "S124": 6,
+        "S125": 5.96,
+        "S126": 8.62,
+        "S127": 4.69,
+        "S128": 4.5,
+        "S129": 5.63,
+        "S130": 4.75,
+        "S131": 6.5,
+        "S132": 8.28,
+        "S133": 8.33,
+        "S134": 8.28,
+        "S135": 8.33,
+        "S136": 9,
+        "S137": 6.45,
+        "S138": 7
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 115.42,
+      "sheetAverage": 6.789411764705882,
+      "overallRank": 47,
+      "lastN": {
+        "average": 7.898333333333333,
+        "sprints": 6,
+        "rank": 38
+      }
+    },
+    {
+      "name": "Aayush Puri",
+      "team": "Team Sanjay",
+      "designation": "SE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": 8.33,
+        "S132": 8.33,
+        "S133": 8.33,
+        "S134": 9.2,
+        "S135": 6.5,
+        "S136": 6.5,
+        "S137": 7,
+        "S138": 7
+      },
+      "sprintsCounted": 8,
+      "sheetTotal": 61.19,
+      "sheetAverage": 7.64875,
+      "overallRank": 32,
+      "lastN": {
+        "average": 7.421666666666667,
+        "sprints": 6,
+        "rank": 46
+      }
+    },
+    {
+      "name": "Prajjwal Pandey",
+      "team": "Team Sanjay",
+      "designation": "SE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": 6,
+        "S133": 9.2,
+        "S134": 9,
+        "S135": 8.33,
+        "S136": 7,
+        "S137": 8.67,
+        "S138": 8.33
+      },
+      "sprintsCounted": 7,
+      "sheetTotal": 56.53,
+      "sheetAverage": 8.075714285714286,
+      "overallRank": 19,
+      "lastN": {
+        "average": 8.421666666666667,
+        "sprints": 6,
+        "rank": 30
+      }
+    },
+    {
+      "name": "Agrim Paneru",
+      "team": "AI Team",
+      "designation": "SE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": 7,
+        "S134": 7,
+        "S135": 8.2,
+        "S136": 7.31,
+        "S137": 9.2,
+        "S138": 9.2
+      },
+      "sprintsCounted": 6,
+      "sheetTotal": 47.91,
+      "sheetAverage": 7.984999999999999,
+      "overallRank": 22,
+      "lastN": {
+        "average": 7.984999999999999,
+        "sprints": 6,
+        "rank": 35
+      }
+    },
+    {
+      "name": "Anmol Chalise",
+      "team": "AI Team",
+      "designation": "SE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": 8.33,
+        "S134": 6.5,
+        "S135": 8.23,
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": "N/A"
+      },
+      "sprintsCounted": 3,
+      "sheetTotal": 23.060000000000002,
+      "sheetAverage": 7.686666666666667,
+      "overallRank": 30,
+      "lastN": {
+        "average": 7.686666666666667,
+        "sprints": 3,
+        "rank": 44
+      }
+    },
+    {
+      "name": "Mandip Thapa",
+      "team": "DevOps",
+      "designation": "SE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": 9
+      },
+      "sprintsCounted": 1,
+      "sheetTotal": 9,
+      "sheetAverage": 9,
+      "overallRank": 7,
+      "lastN": {
+        "average": 9,
+        "sprints": 1,
+        "rank": 14
+      }
+    },
+    {
+      "name": "Diplov Khatri",
+      "team": "Run Team",
+      "designation": "ASE",
+      "cells": {
+        "S122": 6.36,
+        "S123": 8.67,
+        "S124": 3.5,
+        "S125": 5.4,
+        "S126": 6.43,
+        "S127": 6.6,
+        "S128": 6.5,
+        "S129": 8.67,
+        "S130": "N/A",
+        "S131": 9.4,
+        "S132": 8.33,
+        "S133": 9.4,
+        "S134": 8.33,
+        "S135": 8.33,
+        "S136": 8.95,
+        "S137": 8.67,
+        "S138": 8.33
+      },
+      "sprintsCounted": 16,
+      "sheetTotal": 121.87,
+      "sheetAverage": 7.616875,
+      "overallRank": 34,
+      "lastN": {
+        "average": 8.668333333333335,
+        "sprints": 6,
+        "rank": 22
+      }
+    },
+    {
+      "name": "Ramita Shrestha",
+      "team": "Team Bimal",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": 7.85,
+        "S128": 6.5,
+        "S129": 7.67,
+        "S130": 7,
+        "S131": 7,
+        "S132": 9.6,
+        "S133": 9.4,
+        "S134": 9.2,
+        "S135": 9,
+        "S136": 9.6,
+        "S137": 9.2,
+        "S138": 8.33
+      },
+      "sprintsCounted": 12,
+      "sheetTotal": 100.35,
+      "sheetAverage": 8.362499999999999,
+      "overallRank": 15,
+      "lastN": {
+        "average": 9.121666666666668,
+        "sprints": 6,
+        "rank": 10
+      }
+    },
+    {
+      "name": "Niva  Awale",
+      "team": "Team Dhangadhi",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": 7.9,
+        "S128": 6.6,
+        "S129": 7,
+        "S130": 6.5,
+        "S131": 8.5,
+        "S132": 9.8,
+        "S133": 10,
+        "S134": 9,
+        "S135": 8.83,
+        "S136": 7,
+        "S137": 6.5,
+        "S138": 6.5
+      },
+      "sprintsCounted": 12,
+      "sheetTotal": 94.13,
+      "sheetAverage": 7.844166666666666,
+      "overallRank": 25,
+      "lastN": {
+        "average": 7.971666666666667,
+        "sprints": 6,
+        "rank": 36
+      }
+    },
+    {
+      "name": "Shishir Sharma",
+      "team": "Team Bravo",
+      "designation": "ASE",
+      "cells": {
+        "S122": 4.64,
+        "S123": 6.1,
+        "S124": 4.79,
+        "S125": 7.35,
+        "S126": 10,
+        "S127": 9.2,
+        "S128": 9.1,
+        "S129": 6.27,
+        "S130": 8.67,
+        "S131": 10,
+        "S132": 9.4,
+        "S133": 9.6,
+        "S134": 9.2,
+        "S135": 8.97,
+        "S136": 9.6,
+        "S137": 7,
+        "S138": 8.67
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 138.55999999999997,
+      "sheetAverage": 8.150588235294116,
+      "overallRank": 18,
+      "lastN": {
+        "average": 8.84,
+        "sprints": 6,
+        "rank": 17
+      }
+    },
+    {
+      "name": "Surya joshi",
+      "team": "Blaze Warrior",
+      "designation": "ASE",
+      "cells": {
+        "S122": 6.92,
+        "S123": 8.67,
+        "S124": 3.61,
+        "S125": 6.41,
+        "S126": 4.75,
+        "S127": 5.23,
+        "S128": 6.6,
+        "S129": 7.04,
+        "S130": 4.75,
+        "S131": 9.8,
+        "S132": 9,
+        "S133": 9.4,
+        "S134": 6.5,
+        "S135": 8.67,
+        "S136": 10,
+        "S137": 8.33,
+        "S138": 9.2
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 124.88000000000001,
+      "sheetAverage": 7.345882352941177,
+      "overallRank": 37,
+      "lastN": {
+        "average": 8.683333333333332,
+        "sprints": 6,
+        "rank": 21
+      }
+    },
+    {
+      "name": "Santosh Upadhyay",
+      "team": "Team Dhangadhi",
+      "designation": "ASE",
+      "cells": {
+        "S122": 6.56,
+        "S123": 6.5,
+        "S124": 6.58,
+        "S125": 7,
+        "S126": 6.5,
+        "S127": 8.33,
+        "S128": 4.69,
+        "S129": 6.08,
+        "S130": 6,
+        "S131": 6.5,
+        "S132": 7,
+        "S133": 6,
+        "S134": 8.67,
+        "S135": 6.5,
+        "S136": 9,
+        "S137": 6.5,
+        "S138": 8.67
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 117.08,
+      "sheetAverage": 6.8870588235294115,
+      "overallRank": 43,
+      "lastN": {
+        "average": 7.5566666666666675,
+        "sprints": 6,
+        "rank": 45
+      }
+    },
+    {
+      "name": "Bishal Joshi",
+      "team": "Team Dhangadhi",
+      "designation": "ASE",
+      "cells": {
+        "S122": 5.975,
+        "S123": 8.67,
+        "S124": 4,
+        "S125": 7.22,
+        "S126": 5.76,
+        "S127": 6.08,
+        "S128": 6.58,
+        "S129": 5.4,
+        "S130": 8.67,
+        "S131": 9.6,
+        "S132": 6.5,
+        "S133": 8.33,
+        "S134": 9.4,
+        "S135": 6.5,
+        "S136": 8.67,
+        "S137": 9,
+        "S138": 7
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 123.355,
+      "sheetAverage": 7.256176470588236,
+      "overallRank": 39,
+      "lastN": {
+        "average": 8.15,
+        "sprints": 6,
+        "rank": 33
+      }
+    },
+    {
+      "name": "Apekshya Bam",
+      "team": "Team Bimal",
+      "designation": "ASE",
+      "cells": {
+        "S122": 7,
+        "S123": 8.53,
+        "S124": 7.77,
+        "S125": 7.12,
+        "S126": 6,
+        "S127": 6.01,
+        "S128": 5.46,
+        "S129": 6.03,
+        "S130": 6.31,
+        "S131": 8.63,
+        "S132": 8.82,
+        "S133": 8.67,
+        "S134": 8.77,
+        "S135": 8.43,
+        "S136": 9.4,
+        "S137": 9.1,
+        "S138": 9
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 131.05,
+      "sheetAverage": 7.708823529411766,
+      "overallRank": 28,
+      "lastN": {
+        "average": 8.895,
+        "sprints": 6,
+        "rank": 16
+      }
+    },
+    {
+      "name": "Dasarath Ayer",
+      "team": "Team Dhangadhi",
+      "designation": "ASE",
+      "cells": {
+        "S122": 5.3,
+        "S123": 5.73,
+        "S124": 5.93,
+        "S125": 6.55,
+        "S126": 4.93,
+        "S127": 4.75,
+        "S128": 4.45,
+        "S129": 9.6,
+        "S130": 6.33,
+        "S131": 8.33,
+        "S132": 6.5,
+        "S133": 8.67,
+        "S134": 6,
+        "S135": 8.67,
+        "S136": 7,
+        "S137": 8.33,
+        "S138": 8.67
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 115.74000000000001,
+      "sheetAverage": 6.808235294117647,
+      "overallRank": 46,
+      "lastN": {
+        "average": 7.890000000000001,
+        "sprints": 6,
+        "rank": 39
+      }
+    },
+    {
+      "name": "Saugat Gurung",
+      "team": "Team Bravo",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": 6,
+        "S131": 9,
+        "S132": 6.9,
+        "S133": 8.23,
+        "S134": 8.33,
+        "S135": 8.08,
+        "S136": 7,
+        "S137": 9.2,
+        "S138": 8.52
+      },
+      "sprintsCounted": 9,
+      "sheetTotal": 71.25999999999999,
+      "sheetAverage": 7.9177777777777765,
+      "overallRank": 23,
+      "lastN": {
+        "average": 8.226666666666667,
+        "sprints": 6,
+        "rank": 32
+      }
+    },
+    {
+      "name": "Soniya Sharma",
+      "team": "DevOps",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": 6.49,
+        "S131": 8.33,
+        "S132": 9.6,
+        "S133": 7,
+        "S134": 9.6,
+        "S135": 10,
+        "S136": 10,
+        "S137": 10,
+        "S138": 9.2
+      },
+      "sprintsCounted": 9,
+      "sheetTotal": 80.22000000000001,
+      "sheetAverage": 8.913333333333334,
+      "overallRank": 10,
+      "lastN": {
+        "average": 9.299999999999999,
+        "sprints": 6,
+        "rank": 6
+      }
+    },
+    {
+      "name": "Aayush Pradhan",
+      "team": "Team Sanjay",
+      "designation": "ASE",
+      "cells": {
+        "S122": 6.2,
+        "S123": 4.97,
+        "S124": 6.66,
+        "S125": 5.65,
+        "S126": 3.95,
+        "S127": 5.98,
+        "S128": 6.87,
+        "S129": 8.33,
+        "S130": 6.55,
+        "S131": 6.5,
+        "S132": 8.33,
+        "S133": 9,
+        "S134": 8.33,
+        "S135": 8.33,
+        "S136": 8.67,
+        "S137": 8.67,
+        "S138": 9
+      },
+      "sprintsCounted": 17,
+      "sheetTotal": 121.99,
+      "sheetAverage": 7.175882352941176,
+      "overallRank": 41,
+      "lastN": {
+        "average": 8.666666666666666,
+        "sprints": 6,
+        "rank": 23
+      }
+    },
+    {
+      "name": "Swayam Ghimire",
+      "team": "Team Sanjay",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": 6,
+        "S132": 8.33,
+        "S133": 7,
+        "S134": 9.2,
+        "S135": 8.33,
+        "S136": 7,
+        "S137": 7,
+        "S138": 8.33
+      },
+      "sprintsCounted": 8,
+      "sheetTotal": 61.19,
+      "sheetAverage": 7.64875,
+      "overallRank": 32,
+      "lastN": {
+        "average": 7.81,
+        "sprints": 6,
+        "rank": 41
+      }
+    },
+    {
+      "name": "Dipak Raj Giri",
+      "team": "Team Bimal",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": 9.2,
+        "S134": 8.67,
+        "S135": 8.67,
+        "S136": 8.67,
+        "S137": 7,
+        "S138": 9.4
+      },
+      "sprintsCounted": 6,
+      "sheetTotal": 51.61,
+      "sheetAverage": 8.601666666666667,
+      "overallRank": 13,
+      "lastN": {
+        "average": 8.601666666666667,
+        "sprints": 6,
+        "rank": 26
+      }
+    },
+    {
+      "name": "Ashika Balami",
+      "team": "Team Bravo",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": 9.8
+      },
+      "sprintsCounted": 1,
+      "sheetTotal": 9.8,
+      "sheetAverage": 9.8,
+      "overallRank": 2,
+      "lastN": {
+        "average": 9.8,
+        "sprints": 1,
+        "rank": 2
+      }
+    },
+    {
+      "name": "Dilendra Thagunna",
+      "team": "AI Team",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": 10
+      },
+      "sprintsCounted": 1,
+      "sheetTotal": 10,
+      "sheetAverage": 10,
+      "overallRank": 1,
+      "lastN": {
+        "average": 10,
+        "sprints": 1,
+        "rank": 1
+      }
+    },
+    {
+      "name": "Rashi Bhatta",
+      "team": "DevOps",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": 9.2
+      },
+      "sprintsCounted": 1,
+      "sheetTotal": 9.2,
+      "sheetAverage": 9.2,
+      "overallRank": 6,
+      "lastN": {
+        "average": 9.2,
+        "sprints": 1,
+        "rank": 8
+      }
+    },
+    {
+      "name": "Love Sainju",
+      "team": "DevOps",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": 6.5
+      },
+      "sprintsCounted": 1,
+      "sheetTotal": 6.5,
+      "sheetAverage": 6.5,
+      "overallRank": 48,
+      "lastN": {
+        "average": 6.5,
+        "sprints": 1,
+        "rank": 48
+      }
+    },
+    {
+      "name": "Paru Maharjan",
+      "team": "Team Dhangadhi",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": 6.5
+      },
+      "sprintsCounted": 1,
+      "sheetTotal": 6.5,
+      "sheetAverage": 6.5,
+      "overallRank": 48,
+      "lastN": {
+        "average": 6.5,
+        "sprints": 1,
+        "rank": 48
+      }
+    },
+    {
+      "name": "Dipesh Kayastha",
+      "team": "Team Sanjay",
+      "designation": "ASE",
+      "cells": {
+        "S122": "N/A",
+        "S123": "N/A",
+        "S124": "N/A",
+        "S125": "N/A",
+        "S126": "N/A",
+        "S127": "N/A",
+        "S128": "N/A",
+        "S129": "N/A",
+        "S130": "N/A",
+        "S131": "N/A",
+        "S132": "N/A",
+        "S133": "N/A",
+        "S134": "N/A",
+        "S135": "N/A",
+        "S136": "N/A",
+        "S137": "N/A",
+        "S138": 9.8
+      },
+      "sprintsCounted": 1,
+      "sheetTotal": 9.8,
+      "sheetAverage": 9.8,
+      "overallRank": 2,
+      "lastN": {
+        "average": 9.8,
+        "sprints": 1,
+        "rank": 2
+      }
+    }
+  ],
+  "insights": {
+    "headline": {
+      "resources": 49,
+      "overallAvg": 7.776973214285715,
+      "latestSprint": "S138",
+      "latestAvg": 8.408510638297873,
+      "latestCoverage": 0.9591836734693877,
+      "minSprintsForTop": 5
+    },
+    "teams": [
+      {
+        "team": "DevOps",
+        "people": 7,
+        "scoreObs": 41,
+        "totalScore": 367.91,
+        "weightedAvg": 8.973414634146343,
+        "rank": 1
+      },
+      {
+        "team": "Run Team",
+        "people": 5,
+        "scoreObs": 70,
+        "totalScore": 571.2,
+        "weightedAvg": 8.16,
+        "rank": 2
+      },
+      {
+        "team": "Team Bravo",
+        "people": 8,
+        "scoreObs": 107,
+        "totalScore": 855.5899999999999,
+        "weightedAvg": 7.996168224299065,
+        "rank": 4
+      },
+      {
+        "team": "Team Sanjay",
+        "people": 6,
+        "scoreObs": 57,
+        "totalScore": 436.78999999999996,
+        "weightedAvg": 7.66298245614035,
+        "rank": 5
+      },
+      {
+        "team": "Team Bimal",
+        "people": 7,
+        "scoreObs": 86,
+        "totalScore": 657.7400000000001,
+        "weightedAvg": 7.648139534883723,
+        "rank": 6
+      },
+      {
+        "team": "AI Team",
+        "people": 3,
+        "scoreObs": 10,
+        "totalScore": 80.97,
+        "weightedAvg": 8.097,
+        "rank": 3
+      },
+      {
+        "team": "Blaze Warrior",
+        "people": 6,
+        "scoreObs": 102,
+        "totalScore": 763.31,
+        "weightedAvg": 7.483431372549019,
+        "rank": 7
+      },
+      {
+        "team": "Team Dhangadhi",
+        "people": 7,
+        "scoreObs": 87,
+        "totalScore": 621.595,
+        "weightedAvg": 7.144770114942529,
+        "rank": 8
+      }
+    ],
+    "designations": [
+      {
+        "designation": "Team Lead",
+        "people": 6,
+        "scoreObs": 83,
+        "weightedAvg": 8.040481927710843
+      },
+      {
+        "designation": "SSE",
+        "people": 7,
+        "scoreObs": 92,
+        "weightedAvg": 7.815760869565218
+      },
+      {
+        "designation": "SE",
+        "people": 16,
+        "scoreObs": 188,
+        "weightedAvg": 7.785159574468086
+      },
+      {
+        "designation": "ASE",
+        "people": 20,
+        "scoreObs": 197,
+        "weightedAvg": 7.64002538071066
+      }
+    ],
+    "trend": [
+      {
+        "sprint": "S122",
+        "average": 6.831086956521738,
+        "participants": 23
+      },
+      {
+        "sprint": "S123",
+        "average": 7.219166666666665,
+        "participants": 24
+      },
+      {
+        "sprint": "S124",
+        "average": 6.156956521739131,
+        "participants": 23
+      },
+      {
+        "sprint": "S125",
+        "average": 6.939130434782609,
+        "participants": 23
+      },
+      {
+        "sprint": "S126",
+        "average": 7.1620833333333325,
+        "participants": 24
+      },
+      {
+        "sprint": "S127",
+        "average": 6.8999999999999995,
+        "participants": 27
+      },
+      {
+        "sprint": "S128",
+        "average": 6.528148148148149,
+        "participants": 27
+      },
+      {
+        "sprint": "S129",
+        "average": 7.11,
+        "participants": 32
+      },
+      {
+        "sprint": "S130",
+        "average": 6.598000000000001,
+        "participants": 30
+      },
+      {
+        "sprint": "S131",
+        "average": 8.301621621621623,
+        "participants": 37
+      },
+      {
+        "sprint": "S132",
+        "average": 8.5,
+        "participants": 38
+      },
+      {
+        "sprint": "S133",
+        "average": 8.650731707317075,
+        "participants": 41
+      },
+      {
+        "sprint": "S134",
+        "average": 8.605609756097559,
+        "participants": 41
+      },
+      {
+        "sprint": "S135",
+        "average": 8.383170731707319,
+        "participants": 41
+      },
+      {
+        "sprint": "S136",
+        "average": 8.415365853658537,
+        "participants": 41
+      },
+      {
+        "sprint": "S137",
+        "average": 8.341463414634143,
+        "participants": 41
+      },
+      {
+        "sprint": "S138",
+        "average": 8.408510638297873,
+        "participants": 47
+      },
+      {
+        "sprint": "S139",
+        "average": null,
+        "participants": 0
+      },
+      {
+        "sprint": "S140",
+        "average": null,
+        "participants": 0
+      },
+      {
+        "sprint": "S141",
+        "average": null,
+        "participants": 0
+      }
+    ],
+    "top10": [
+      {
+        "rank": 1,
+        "name": "Niba Tandukar",
+        "designation": "Team Lead",
+        "team": "DevOps",
+        "sprints": 10,
+        "average": 9.526
+      },
+      {
+        "rank": 2,
+        "name": "Sajjan Khanal",
+        "designation": "SE",
+        "team": "DevOps",
+        "sprints": 9,
+        "average": 8.995555555555555
+      },
+      {
+        "rank": 3,
+        "name": "Jeevan Joshi",
+        "designation": "SE",
+        "team": "Run Team",
+        "sprints": 9,
+        "average": 8.97777777777778
+      },
+      {
+        "rank": 4,
+        "name": "Soniya Sharma",
+        "designation": "ASE",
+        "team": "DevOps",
+        "sprints": 9,
+        "average": 8.913333333333334
+      },
+      {
+        "rank": 5,
+        "name": "Bishal Stha",
+        "designation": "Team Lead",
+        "team": "Team Bravo",
+        "sprints": 14,
+        "average": 8.886428571428572
+      },
+      {
+        "rank": 6,
+        "name": "Ravi Gupta",
+        "designation": "SSE",
+        "team": "DevOps",
+        "sprints": 10,
+        "average": 8.677000000000001
+      },
+      {
+        "rank": 7,
+        "name": "Dipak Raj Giri",
+        "designation": "ASE",
+        "team": "Team Bimal",
+        "sprints": 6,
+        "average": 8.601666666666667
+      },
+      {
+        "rank": 8,
+        "name": "Shreeya Shakya",
+        "designation": "SE",
+        "team": "Team Bravo",
+        "sprints": 17,
+        "average": 8.518235294117648
+      },
+      {
+        "rank": 9,
+        "name": "Ramita Shrestha",
+        "designation": "ASE",
+        "team": "Team Bimal",
+        "sprints": 12,
+        "average": 8.362499999999999
+      },
+      {
+        "rank": 10,
+        "name": "Rashik Shrestha",
+        "designation": "SE",
+        "team": "Run Team",
+        "sprints": 15,
+        "average": 8.290000000000001
+      }
+    ]
+  }
+}

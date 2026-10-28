@@ -1,0 +1,136 @@
+# generated: 2026-10-16
+# last_updated: 2026-10-16 (60/60 stories done)
+# project: hrm
+# story_location: aaid_artifacts/implementation/<STORY-ID>/story.md
+#
+# STATUS DEFINITIONS:
+# ====================
+# Epic status:
+#   - backlog:     No stories started yet
+#   - in-progress: At least one story active
+#   - done:        All stories completed
+#
+# Story status:
+#   - backlog:     Not yet started
+#   - in-progress: `aaid story start STORY-ID`
+#   - in-review:   `aaid story review STORY-ID`  (or auto via `aaid run dev --story`)
+#   - done:        `aaid story done STORY-ID`
+#   - blocked:     `aaid story block STORY-ID "reason"`
+#   - deferred:    `aaid sprint defer STORY-ID "reason"`
+
+generated: 2026-10-16
+last_updated: 2026-10-16 (60/60 stories done)
+project: hrm
+story_location: aaid_artifacts/implementation/<STORY-ID>/story.md
+
+development_status:
+
+  # ─────────────────────────────────────────────────────────────
+  # E-00: Platform Foundation
+  # ─────────────────────────────────────────────────────────────
+  E-00: done
+  E-00-01-toolchain-verification-spike: done  # 1 pts
+  E-00-02-project-scaffold-quality-gates: done  # 5 pts
+  E-00-03-database-schema-migrations: done  # 5 pts
+  E-00-04-composition-root-env-validation-http-plumbing: done  # 3 pts
+  E-00-05-app-shell-design-tokens-security-headers: done  # 3 pts
+  E-00-06-golden-test-fixtures: done  # 3 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-01: HR Admin Authentication & Access
+  # ─────────────────────────────────────────────────────────────
+  E-01: done
+  E-01-01-login-with-lockout: done  # 5 pts
+  E-01-02-two-gate-route-protection: done  # 3 pts
+  E-01-03-seed-first-hr-admin: done  # 2 pts
+  E-01-04-session-expiry-logout: done  # 2 pts
+  E-01-05-change-password: done  # 2 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-04: KPI Calculation Engine
+  # ─────────────────────────────────────────────────────────────
+  E-04: done
+  E-04-01-per-engineer-metrics: done  # 5 pts
+  E-04-02-rating-bands: done  # 2 pts
+  E-04-03-rankings-with-exact-precision-comparison: done  # 5 pts
+  E-04-04-group-aggregates-sprint-trend: done  # 3 pts
+  E-04-05-dashboard-dataset-query-api: done  # 5 pts
+  E-04-06-sprint-range-selection: done  # 3 pts
+  E-04-07-performance-benchmarks: done  # 2 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-02: Excel KPI Import & Validation
+  # ─────────────────────────────────────────────────────────────
+  E-02: done
+  E-02-01-secure-upload-original-file-storage: done  # 3 pts
+  E-02-02-sheet-header-detection: done  # 5 pts
+  E-02-03-cell-parsing-row-validation: done  # 5 pts
+  E-02-04-identity-matching-diff-engine: done  # 5 pts
+  E-02-05-import-preview-screen: done  # 5 pts
+  E-02-06-data-quality-warnings: done  # 3 pts
+  E-02-07-atomic-commit-with-revision-guard-journal: done  # 5 pts
+  E-02-08-roll-back-latest-import: done  # 5 pts
+  E-02-09-import-history-original-file-download: done  # 2 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-05: KPI Dashboard
+  # ─────────────────────────────────────────────────────────────
+  E-05: done
+  E-05-01-kpi-summary-cards: done  # 3 pts
+  E-05-02-filters-with-bookmarkable-state: done  # 3 pts
+  E-05-03-group-trend-charts: done  # 5 pts
+  E-05-04-momentum-biggest-movers-chart: done  # 3 pts
+  E-05-05-sortable-engineer-table: done  # 3 pts
+  E-05-06-data-check-banner-empty-state: done  # 2 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-06: Engineer Profile & Rankings
+  # ─────────────────────────────────────────────────────────────
+  E-06: done
+  E-06-01-engineer-profile-modal: done  # 3 pts
+  E-06-02-profile-page-score-table: done  # 3 pts
+  E-06-03-rankings-page: done  # 5 pts
+  E-06-04-team-designation-summaries-with-top-n: done  # 3 pts
+  E-06-05-auto-generated-interpretation: done  # 2 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-07: Reports & Export
+  # ─────────────────────────────────────────────────────────────
+  E-07: done
+  E-07-01-print-dashboard-to-pdf: done  # 3 pts
+  E-07-02-export-engineer-table-to-excelcsv: done  # 3 pts
+  E-07-03-export-rankings-workbook: done  # 2 pts
+  E-07-04-individual-appraisal-summary-print: done  # 3 pts
+  E-07-05-team-batch-appraisal-print: done  # 2 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-03: Employee, Team & Sprint Master Data
+  # ─────────────────────────────────────────────────────────────
+  E-03: done
+  E-03-01-employee-list: done  # 3 pts
+  E-03-02-edit-employee-with-aliases-field-locks: done  # 5 pts
+  E-03-03-teams-designations-rename-and-order-with-aliases: done  # 3 pts
+  E-03-04-merge-employees: done  # 5 pts
+  E-03-05-correct-a-single-score: done  # 3 pts
+  E-03-06-privacy-erasure: done  # 5 pts
+  E-03-07-sprint-dates: done  # 1 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-08: Settings & Configuration
+  # ─────────────────────────────────────────────────────────────
+  E-08: done
+  E-08-01-settings-storage-validation-api: done  # 3 pts
+  E-08-02-rating-bands-editor: done  # 2 pts
+  E-08-03-calculation-parameters-editor: done  # 2 pts
+  E-08-04-settings-driven-recalculation: done  # 2 pts
+  E-08-05-reset-settings-to-defaults: done  # 1 pts
+
+  # ─────────────────────────────────────────────────────────────
+  # E-09: Audit & Data Governance
+  # ─────────────────────────────────────────────────────────────
+  E-09: done
+  E-09-01-audit-event-recording: done  # 3 pts
+  E-09-02-audit-log-viewer: done  # 3 pts
+  E-09-03-backup-download: done  # 2 pts
+  E-09-04-restore-procedure-verification-test: done  # 2 pts
+  E-09-05-upload-retention-purge: done  # 2 pts

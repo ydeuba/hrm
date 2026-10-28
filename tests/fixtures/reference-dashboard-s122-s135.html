@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloudtech Engineering KPI Dashboard &middot; Sprint 122&ndash;134</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+  :root{
+    --navy:#10233F; --teal:#0F6E78; --teal2:#13909c; --ltbg:#EEF3F6;
+    --green:#1E8E4E; --amber:#C8881A; --red:#C0392B; --grey:#5A6470;
+    --line:#D5DEE5; --ink:#1F2933; --zebra:#F6F9FB;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:#F0F3F6;color:var(--ink);font-size:14px;line-height:1.45}
+  header.app{background:var(--navy);color:#fff;padding:16px 26px;display:flex;align-items:center;
+       justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:4px solid var(--teal)}
+  header.app h1{font-size:18px;margin:0;font-weight:700}
+  header.app .sub{font-size:12px;color:#A9BFC8;margin-top:2px}
+  header.app .tools{display:flex;gap:8px;flex-wrap:wrap}
+  button{font-family:inherit;font-size:13px;border:0;border-radius:6px;padding:8px 14px;cursor:pointer;font-weight:600}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.22)}
+  .btn-primary{background:var(--teal);color:#fff}.btn-primary:hover{background:var(--teal2)}
+  button:focus-visible,select:focus-visible,input:focus-visible,tr:focus-visible{outline:2px solid var(--teal2);outline-offset:2px}
+  main{max-width:1180px;margin:0 auto;padding:20px}
+  .filters{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;background:#fff;border:1px solid var(--line);
+       border-radius:10px;padding:14px 16px;margin-bottom:18px}
+  .filters label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--grey);margin-bottom:4px;font-weight:700}
+  .filters select,.filters input{font-family:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;min-width:150px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;border-left:4px solid var(--teal)}
+  .card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--grey);font-weight:700}
+  .card .v{font-size:26px;font-weight:800;color:var(--navy);margin-top:4px;line-height:1}
+  .card .d{font-size:11px;color:var(--grey);margin-top:4px}
+  .card.green{border-left-color:var(--green)} .card.amber{border-left-color:var(--amber)} .card.red{border-left-color:var(--red)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+  .grid2.wide{grid-template-columns:1.3fr 1fr}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:18px}
+  .panel h3{margin:0 0 12px;font-size:14px;color:var(--navy)}
+  .chart-wrap{position:relative;height:240px}
+  .chart-wrap.tall{height:300px}
+  .chart-wrap.xtall{height:340px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{background:var(--navy);color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.03em;cursor:pointer;white-space:nowrap}
+  th .arrow{opacity:.5;font-size:9px}
+  tbody tr:nth-child(even){background:var(--zebra)}
+  tbody tr{cursor:pointer} tbody tr:hover{background:#E8F0F4}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .rk{display:inline-block;min-width:22px;text-align:center;font-weight:800;color:var(--navy)}
+  .up{color:var(--green);font-weight:700} .down{color:var(--red);font-weight:700} .flat{color:var(--grey)}
+  .pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+  .p-out{background:var(--green)} .p-exc{background:var(--teal)} .p-meet{background:var(--amber)} .p-ni{background:var(--red)}
+  .note{background:#FFF8E7;border:1px solid #EBD9A8;border-left:4px solid var(--amber);border-radius:8px;
+        padding:10px 14px;margin-bottom:18px;font-size:12px;color:#6B5316}
+  .note b{color:#4A3A0E}
+  .modal-bg{position:fixed;inset:0;background:rgba(16,35,63,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff;border-radius:12px;max-width:680px;width:100%;padding:22px;max-height:90vh;overflow:auto}
+  .modal h2{margin:0 0 2px;color:var(--navy);font-size:20px}
+  .modal .meta{color:var(--grey);font-size:13px;margin-bottom:14px}
+  .modal .close{float:right;background:#eee;color:#333;border-radius:50%;width:30px;height:30px;padding:0;font-size:16px}
+  .mini{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+  .mini div{background:var(--ltbg);border-radius:8px;padding:8px 10px}
+  .mini .k{font-size:10px;color:var(--grey);text-transform:uppercase;font-weight:700}
+  .mini .v{font-size:18px;font-weight:800;color:var(--navy)}
+  footer{max-width:1180px;margin:0 auto;padding:8px 20px 30px;color:var(--grey);font-size:11px}
+  .legend{font-size:11px;color:var(--grey);margin-top:8px}
+  @media(max-width:760px){.grid2,.grid2.wide{grid-template-columns:1fr}.mini{grid-template-columns:repeat(2,1fr)}}
+  @media print{header.app .tools,.filters{display:none}body{background:#fff}.panel,.card{break-inside:avoid}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="app">
+  <div>
+    <h1>Cloudtech Engineering KPI Dashboard</h1>
+    <div class="sub" id="subLine"></div>
+  </div>
+  <div class="tools">
+    <input type="file" id="fileInput" accept=".csv" style="display:none">
+    <button class="btn-ghost" onclick="document.getElementById('fileInput').click()">&#8593; Load updated master sheet</button>
+    <button class="btn-primary" onclick="window.print()">&#8595; Export / Print PDF</button>
+  </div>
+</header>
+
+<main>
+  <div class="filters">
+    <div><label for="fDesig">Designation</label><select id="fDesig"></select></div>
+    <div><label for="fTeam">Team</label><select id="fTeam"></select></div>
+    <div><label for="fRating">Rating</label><select id="fRating"></select></div>
+    <div><label for="fTenure">Sprint coverage</label><select id="fTenure">
+      <option value="">All engineers</option>
+      <option value="10">10+ sprints scored</option>
+      <option value="6">6+ sprints scored</option>
+      <option value="new">Fewer than 6 (new / partial)</option>
+    </select></div>
+    <div style="flex:1;min-width:180px"><label for="fSearch">Search name</label><input id="fSearch" placeholder="Type a name&hellip;"></div>
+    <div><button class="btn-primary" onclick="resetFilters()">Reset</button></div>
+  </div>
+
+  <div id="dq"></div>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="grid2 wide">
+    <div class="panel"><h3>Average score by designation</h3><div class="chart-wrap"><canvas id="chDesig"></canvas></div></div>
+    <div class="panel"><h3>Rating distribution</h3><div class="chart-wrap"><canvas id="chDist"></canvas></div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel"><h3>Average score by team</h3><div class="chart-wrap tall"><canvas id="chTeam"></canvas></div></div>
+    <div class="panel"><h3>Org average score per sprint (trend)</h3><div class="chart-wrap tall"><canvas id="chTrend"></canvas></div>
+       <div class="legend">Line = average of all filtered engineers who had a score that sprint.</div></div>
+  </div>
+
+  <div class="panel">
+    <h3>Momentum &mdash; biggest movers <span style="color:var(--grey);font-weight:400;font-size:12px">(last 3 scored sprints vs the 3 before)</span></h3>
+    <div class="chart-wrap xtall"><canvas id="chMove"></canvas></div>
+    <div class="legend">Only engineers with 6 or more scored sprints appear here, so short-tenure spikes don't distort the view.</div>
+  </div>
+
+  <div class="panel">
+    <h3>Engineers <span id="rowCount" style="color:var(--grey);font-weight:400;font-size:12px"></span></h3>
+    <div style="overflow:auto"><table id="tbl">
+      <thead><tr>
+        <th data-k="rank" class="num">Rank <span class="arrow">&#9650;&#9660;</span></th>
+        <th data-k="name">Name</th>
+        <th data-k="team">Team</th>
+        <th data-k="designation">Designation</th>
+        <th data-k="sprintsCounted" class="num">Sprints</th>
+        <th data-k="total" class="num">Total</th>
+        <th data-k="average" class="num">Avg score</th>
+        <th data-k="last3" class="num">Last 3</th>
+        <th data-k="momentum" class="num">Momentum</th>
+        <th data-k="rating">Rating</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="legend">Rank = Overall Ranking as recorded in the master sheet. Averages and totals are recomputed from the sprint scores. RUN and N/A sprints are excluded from all calculations.</div>
+  </div>
+</main>
+
+<footer>Cloudtech Services &middot; Confidential &middot; Click any engineer row for their sprint-by-sprint trend. Load an updated master sheet to recalculate everything live.</footer>
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal" role="dialog" aria-modal="true"></div>
+</div>
+
+<script>
+const RAW = {"sprints":["S122","S123","S124","S125","S126","S127","S128","S129","S130","S131","S132","S133","S134","S135"],"records":[{"name":"Bishal Stha","team":"Team Bravo","designation":"Team Lead","scores":{"S122":null,"S123":null,"S124":null,"S125":10.0,"S126":9.2,"S127":9.0,"S128":9.0,"S129":10.0,"S130":8.33,"S131":8.67,"S132":9.4,"S133":8.67,"S134":8.67,"S135":6.0},"sprintsCounted":11,"total":96.94,"average":8.81,"sheetAvg":8.81,"rank":4,"runSprints":3},{"name":"Niba Tandukar","team":"DevOps","designation":"Team Lead","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":8.33,"S130":10.0,"S131":10.0,"S132":9.8,"S133":8.33,"S134":9.8,"S135":10.0},"sprintsCounted":7,"total":66.26,"average":9.47,"sheetAvg":9.47,"rank":1,"runSprints":0},{"name":"Dharma Gurung","team":"Blaze Warrior","designation":"Team Lead","scores":{"S122":10.0,"S123":8.67,"S124":6.5,"S125":8.33,"S126":9.0,"S127":6.5,"S128":4.64,"S129":9.0,"S130":9.0,"S131":8.33,"S132":10.0,"S133":7.0,"S134":9.0,"S135":9.0},"sprintsCounted":14,"total":114.97,"average":8.21,"sheetAvg":8.21,"rank":9,"runSprints":0},{"name":"Sanjay Khadka","team":"Team Sanjay","designation":"Team Lead","scores":{"S122":8.67,"S123":10.0,"S124":8.67,"S125":null,"S126":9.4,"S127":7.0,"S128":8.33,"S129":6.0,"S130":6.0,"S131":9.2,"S132":6.5,"S133":8.33,"S134":8.33,"S135":8.33},"sprintsCounted":13,"total":104.76,"average":8.06,"sheetAvg":8.06,"rank":12,"runSprints":0},{"name":"Bimal Sharma","team":"Team Bimal","designation":"Team Lead","scores":{"S122":6.5,"S123":8.33,"S124":6.54,"S125":9.2,"S126":6.4,"S127":7.03,"S128":4.81,"S129":5.47,"S130":5.47,"S131":8.33,"S132":8.33,"S133":6.0,"S134":9.4,"S135":8.67},"sprintsCounted":14,"total":100.48,"average":7.18,"sheetAvg":7.18,"rank":32,"runSprints":0},{"name":"Bikash Bhandari","team":"Team Dhangadhi","designation":"Team Lead","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":6.0,"S131":7.0,"S132":6.0,"S133":9.4,"S134":6.5,"S135":6.0},"sprintsCounted":6,"total":40.9,"average":6.82,"sheetAvg":6.82,"rank":26,"runSprints":0},{"name":"Naina Shrestha","team":"Team Bravo","designation":"SSE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":9.2,"S128":8.67,"S129":7.0,"S130":10.0,"S131":9.8,"S132":9.6,"S133":10.0,"S134":7.0,"S135":9.2},"sprintsCounted":9,"total":80.47,"average":8.94,"sheetAvg":8.94,"rank":3,"runSprints":0},{"name":"Ram Chandra Dahal","team":"Run Team","designation":"SSE","scores":{"S122":6.55,"S123":7.0,"S124":6.77,"S125":8.9,"S126":8.33,"S127":9.0,"S128":7.02,"S129":7.14,"S130":null,"S131":8.33,"S132":9.6,"S133":8.33,"S134":7.0,"S135":9.2},"sprintsCounted":13,"total":103.17,"average":7.94,"sheetAvg":7.94,"rank":18,"runSprints":0},{"name":"Abhinash Neupane","team":"Run Team","designation":"SSE","scores":{"S122":8.28,"S123":7.0,"S124":7.64,"S125":null,"S126":null,"S127":5.4,"S128":6.4,"S129":7.12,"S130":null,"S131":10.0,"S132":10.0,"S133":9.2,"S134":9.2,"S135":7.0},"sprintsCounted":11,"total":87.24,"average":7.93,"sheetAvg":7.93,"rank":29,"runSprints":2},{"name":"Anuj Magar","team":"Team Bravo","designation":"SSE","scores":{"S122":null,"S123":6.0,"S124":null,"S125":9.55,"S126":6.7,"S127":5.95,"S128":5.92,"S129":7.01,"S130":5.09,"S131":9.0,"S132":7.0,"S133":8.85,"S134":8.95,"S135":8.95},"sprintsCounted":12,"total":88.97,"average":7.41,"sheetAvg":7.41,"rank":25,"runSprints":2},{"name":"Ravi Gupta","team":"DevOps","designation":"SSE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":6.84,"S130":5.86,"S131":10.0,"S132":9.4,"S133":7.0,"S134":10.0,"S135":8.67},"sprintsCounted":7,"total":57.77,"average":8.25,"sheetAvg":8.25,"rank":11,"runSprints":0},{"name":"Nirjal Dahal","team":"Blaze Warrior","designation":"SSE","scores":{"S122":6.08,"S123":5.87,"S124":5.92,"S125":6.58,"S126":6.0,"S127":5.84,"S128":7.0,"S129":5.43,"S130":5.81,"S131":7.0,"S132":9.2,"S133":9.2,"S134":9.35,"S135":8.67},"sprintsCounted":14,"total":97.95,"average":7.0,"sheetAvg":7.0,"rank":35,"runSprints":0},{"name":"BK Krishna Magar","team":"Team Bravo","designation":"SSE","scores":{"S122":5.14,"S123":6.28,"S124":4.0,"S125":5.76,"S126":9.0,"S127":5.72,"S128":6.0,"S129":6.5,"S130":7.16,"S131":9.2,"S132":9.0,"S133":9.6,"S134":8.67,"S135":8.33},"sprintsCounted":14,"total":100.36,"average":7.17,"sheetAvg":7.17,"rank":30,"runSprints":0},{"name":"Shreeya Shakya","team":"Team Bravo","designation":"SE","scores":{"S122":9.2,"S123":6.95,"S124":6.5,"S125":8.7,"S126":8.83,"S127":10.0,"S128":9.6,"S129":7.68,"S130":6.72,"S131":9.2,"S132":9.45,"S133":9.95,"S134":9.1,"S135":7.15},"sprintsCounted":14,"total":119.03,"average":8.5,"sheetAvg":8.5,"rank":5,"runSprints":0},{"name":"Sajjan Khanal","team":"DevOps","designation":"SE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":7.31,"S130":5.25,"S131":10.0,"S132":9.4,"S133":9.4,"S134":10.0,"S135":10.0},"sprintsCounted":7,"total":61.36,"average":8.77,"sheetAvg":8.77,"rank":13,"runSprints":0},{"name":"Susmita Parajuli","team":"Blaze Warrior","designation":"SE","scores":{"S122":7.21,"S123":7.25,"S124":6.8,"S125":6.3,"S126":7.28,"S127":6.8,"S128":7.4,"S129":8.63,"S130":5.9,"S131":8.43,"S132":8.68,"S133":9.4,"S134":6.7,"S135":9.35},"sprintsCounted":14,"total":106.13,"average":7.58,"sheetAvg":7.58,"rank":20,"runSprints":0},{"name":"Rashik Shrestha","team":"Run Team","designation":"SE","scores":{"S122":9.6,"S123":6.84,"S124":7.0,"S125":6.25,"S126":9.0,"S127":9.2,"S128":null,"S129":7.0,"S130":null,"S131":8.33,"S132":9.0,"S133":8.33,"S134":7.0,"S135":9.2},"sprintsCounted":12,"total":96.75,"average":8.06,"sheetAvg":8.06,"rank":16,"runSprints":1},{"name":"Aashish Katwal","team":"Team Bravo","designation":"SE","scores":{"S122":7.7,"S123":7.3,"S124":8.33,"S125":4.49,"S126":6.5,"S127":6.36,"S128":6.95,"S129":8.33,"S130":5.85,"S131":7.0,"S132":9.15,"S133":9.7,"S134":8.9,"S135":7.0},"sprintsCounted":14,"total":103.56,"average":7.4,"sheetAvg":7.4,"rank":21,"runSprints":0},{"name":"Sagar Maharjan","team":"Blaze Warrior","designation":"SE","scores":{"S122":6.48,"S123":8.33,"S124":6.45,"S125":5.48,"S126":5.81,"S127":7.09,"S128":7.0,"S129":6.45,"S130":6.5,"S131":8.62,"S132":9.85,"S133":9.1,"S134":9.4,"S135":9.05},"sprintsCounted":14,"total":105.61,"average":7.54,"sheetAvg":7.54,"rank":22,"runSprints":0},{"name":"Sayara Dangol","team":"Team Bimal","designation":"SE","scores":{"S122":null,"S123":null,"S124":null,"S125":5.19,"S126":8.17,"S127":6.5,"S128":6.49,"S129":6.03,"S130":8.33,"S131":6.0,"S132":6.85,"S133":9.8,"S134":8.33,"S135":8.62},"sprintsCounted":11,"total":80.31,"average":7.3,"sheetAvg":7.3,"rank":27,"runSprints":0},{"name":"Jeevan Joshi","team":"Run Team","designation":"SE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":6.4,"S130":null,"S131":9.8,"S132":10.0,"S133":9.0,"S134":10.0,"S135":9.2},"sprintsCounted":6,"total":54.4,"average":9.07,"sheetAvg":9.07,"rank":42,"runSprints":7},{"name":"Ankit Belal","team":"Team Dhangadhi","designation":"SE","scores":{"S122":3.75,"S123":8.17,"S124":6.5,"S125":null,"S126":null,"S127":null,"S128":6.87,"S129":6.63,"S130":6.0,"S131":6.0,"S132":7.0,"S133":9.0,"S134":10.0,"S135":9.8},"sprintsCounted":11,"total":79.72,"average":7.25,"sheetAvg":7.25,"rank":36,"runSprints":0},{"name":"Anish Gho Shrestha","team":"Team Bimal","designation":"SE","scores":{"S122":6.0,"S123":5.33,"S124":5.15,"S125":6.21,"S126":5.33,"S127":6.29,"S128":4.98,"S129":6.5,"S130":6.65,"S131":6.3,"S132":8.67,"S133":10.0,"S134":9.35,"S135":8.62},"sprintsCounted":14,"total":95.38,"average":6.81,"sheetAvg":6.81,"rank":40,"runSprints":0},{"name":"Suyog Acharya","team":"Blaze Warrior","designation":"SE","scores":{"S122":7.0,"S123":6.1,"S124":6.0,"S125":5.96,"S126":8.62,"S127":4.69,"S128":4.5,"S129":5.63,"S130":4.75,"S131":6.5,"S132":8.28,"S133":8.33,"S134":8.28,"S135":8.33},"sprintsCounted":14,"total":92.97,"average":6.64,"sheetAvg":6.64,"rank":43,"runSprints":0},{"name":"Aayush Puri","team":"Team Sanjay","designation":"SE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":null,"S131":8.33,"S132":8.33,"S133":8.33,"S134":9.2,"S135":6.5},"sprintsCounted":5,"total":40.69,"average":8.14,"sheetAvg":8.14,"rank":6,"runSprints":0},{"name":"Prajjwal Pandey","team":"Team Sanjay","designation":"SE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":null,"S131":null,"S132":6.0,"S133":9.2,"S134":9.0,"S135":8.33},"sprintsCounted":4,"total":32.53,"average":8.13,"sheetAvg":8.13,"rank":17,"runSprints":0},{"name":"Agrim Paneru","team":"AI Team","designation":"SE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":null,"S131":null,"S132":null,"S133":7.0,"S134":7.0,"S135":8.2},"sprintsCounted":3,"total":22.2,"average":7.4,"sheetAvg":7.4,"rank":28,"runSprints":0},{"name":"Anmol Chalise","team":"AI Team","designation":"SE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":null,"S131":null,"S132":null,"S133":8.33,"S134":6.5,"S135":8.23},"sprintsCounted":3,"total":23.06,"average":7.69,"sheetAvg":7.69,"rank":6,"runSprints":0},{"name":"Diplov Khatri","team":"Run Team","designation":"ASE","scores":{"S122":6.36,"S123":8.67,"S124":3.5,"S125":5.4,"S126":6.43,"S127":6.6,"S128":6.5,"S129":8.67,"S130":null,"S131":9.4,"S132":8.33,"S133":9.4,"S134":8.33,"S135":8.33},"sprintsCounted":13,"total":95.92,"average":7.38,"sheetAvg":7.38,"rank":38,"runSprints":0},{"name":"Ramita Shrestha","team":"Team Bimal","designation":"ASE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":7.85,"S128":6.5,"S129":7.67,"S130":7.0,"S131":7.0,"S132":9.6,"S133":9.4,"S134":9.2,"S135":9.0},"sprintsCounted":9,"total":73.22,"average":8.14,"sheetAvg":8.14,"rank":15,"runSprints":0},{"name":"Niva  Awale","team":"Team Dhangadhi","designation":"ASE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":7.9,"S128":6.6,"S129":7.0,"S130":6.5,"S131":8.5,"S132":9.8,"S133":10.0,"S134":9.0,"S135":8.83},"sprintsCounted":9,"total":74.13,"average":8.24,"sheetAvg":8.24,"rank":10,"runSprints":0},{"name":"Shishir Sharma","team":"Team Bravo","designation":"ASE","scores":{"S122":4.64,"S123":6.1,"S124":4.79,"S125":7.35,"S126":10.0,"S127":9.2,"S128":9.1,"S129":6.27,"S130":8.67,"S131":10.0,"S132":9.4,"S133":9.6,"S134":9.2,"S135":8.97},"sprintsCounted":14,"total":113.29,"average":8.09,"sheetAvg":8.09,"rank":14,"runSprints":0},{"name":"Surya joshi","team":"Blaze Warrior","designation":"ASE","scores":{"S122":6.92,"S123":8.67,"S124":3.61,"S125":6.41,"S126":4.75,"S127":5.23,"S128":6.6,"S129":7.04,"S130":4.75,"S131":9.8,"S132":9.0,"S133":9.4,"S134":6.5,"S135":8.67},"sprintsCounted":14,"total":97.35,"average":6.95,"sheetAvg":6.95,"rank":33,"runSprints":0},{"name":"Santosh Upadhyay","team":"Team Dhangadhi","designation":"ASE","scores":{"S122":6.56,"S123":6.5,"S124":6.58,"S125":7.0,"S126":6.5,"S127":8.33,"S128":4.69,"S129":6.08,"S130":6.0,"S131":6.5,"S132":7.0,"S133":6.0,"S134":8.67,"S135":6.5},"sprintsCounted":14,"total":92.91,"average":6.64,"sheetAvg":6.64,"rank":39,"runSprints":0},{"name":"Bishal Joshi","team":"Team Dhangadhi","designation":"ASE","scores":{"S122":5.98,"S123":8.67,"S124":4.0,"S125":7.22,"S126":5.76,"S127":6.08,"S128":6.58,"S129":5.4,"S130":8.67,"S131":9.6,"S132":6.5,"S133":8.33,"S134":9.4,"S135":6.5},"sprintsCounted":14,"total":98.69,"average":7.05,"sheetAvg":7.05,"rank":31,"runSprints":0},{"name":"Apekshya Bam","team":"Team Bimal","designation":"ASE","scores":{"S122":7.0,"S123":8.53,"S124":7.77,"S125":7.12,"S126":6.0,"S127":6.01,"S128":5.46,"S129":6.03,"S130":6.31,"S131":8.63,"S132":8.82,"S133":8.67,"S134":8.77,"S135":8.43},"sprintsCounted":14,"total":103.55,"average":7.4,"sheetAvg":7.4,"rank":23,"runSprints":0},{"name":"Dasarath Ayer","team":"Team Dhangadhi","designation":"ASE","scores":{"S122":5.3,"S123":5.73,"S124":5.93,"S125":6.55,"S126":4.93,"S127":4.75,"S128":4.45,"S129":9.6,"S130":6.33,"S131":8.33,"S132":6.5,"S133":8.67,"S134":6.0,"S135":8.67},"sprintsCounted":14,"total":91.74,"average":6.55,"sheetAvg":6.55,"rank":41,"runSprints":0},{"name":"Umesh Rana","team":"DevOps","designation":"ASE","scores":{"S122":9.13,"S123":5.97,"S124":4.0,"S125":4.95,"S126":4.93,"S127":4.75,"S128":4.45,"S129":9.2,"S130":9.2,"S131":9.4,"S132":9.2,"S133":8.33,"S134":10.0,"S135":9.4},"sprintsCounted":14,"total":102.91,"average":7.35,"sheetAvg":7.35,"rank":34,"runSprints":0},{"name":"Saugat Gurung","team":"Team Bravo","designation":"ASE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":6.0,"S131":9.0,"S132":6.9,"S133":8.23,"S134":8.33,"S135":8.08},"sprintsCounted":6,"total":46.54,"average":7.76,"sheetAvg":7.76,"rank":19,"runSprints":0},{"name":"Soniya Sharma","team":"DevOps","designation":"ASE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":6.49,"S131":8.33,"S132":9.6,"S133":7.0,"S134":9.6,"S135":10.0},"sprintsCounted":6,"total":51.02,"average":8.5,"sheetAvg":8.5,"rank":8,"runSprints":0},{"name":"Aayush Pradhan","team":"Team Sanjay","designation":"ASE","scores":{"S122":6.2,"S123":4.97,"S124":6.66,"S125":5.65,"S126":3.95,"S127":5.98,"S128":6.87,"S129":8.33,"S130":6.55,"S131":6.5,"S132":8.33,"S133":9.0,"S134":8.33,"S135":8.33},"sprintsCounted":14,"total":95.65,"average":6.83,"sheetAvg":6.83,"rank":37,"runSprints":0},{"name":"Swayam Ghimire","team":"Team Sanjay","designation":"ASE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":null,"S131":6.0,"S132":8.33,"S133":7.0,"S134":9.2,"S135":8.33},"sprintsCounted":5,"total":38.86,"average":7.77,"sheetAvg":7.77,"rank":24,"runSprints":0},{"name":"Dipak Raj Giri","team":"Team Bimal","designation":"ASE","scores":{"S122":null,"S123":null,"S124":null,"S125":null,"S126":null,"S127":null,"S128":null,"S129":null,"S130":null,"S131":null,"S132":null,"S133":9.2,"S134":8.67,"S135":8.67},"sprintsCounted":3,"total":26.54,"average":8.85,"sheetAvg":8.85,"rank":2,"runSprints":0}]};
+let SPRINTS = RAW.sprints.slice();
+let RECORDS = [];
+let charts = {};
+let sortKey = "rank", sortDir = 1;
+
+function avg(arr){return arr.length? arr.reduce((a,b)=>a+b,0)/arr.length : null;}
+function r2(x){return x==null?null:Math.round(x*100)/100;}
+
+/* Derive momentum + consistency once per dataset so filters stay cheap. */
+function enrich(recs){
+  recs.forEach(r=>{
+    const seq = SPRINTS.map(s=>r.scores[s]).filter(v=>v!=null);
+    r.last3 = seq.length? r2(avg(seq.slice(-3))) : null;
+    r.prior3 = seq.length>=4? r2(avg(seq.slice(-6,-3))) : null;
+    r.momentum = (r.last3!=null && r.prior3!=null && seq.length>=6)? r2(r.last3-r.prior3) : null;
+    r.best = seq.length? Math.max(...seq) : null;
+    r.worst = seq.length? Math.min(...seq) : null;
+    const m = avg(seq);
+    r.spread = seq.length>1? r2(Math.sqrt(avg(seq.map(v=>(v-m)*(v-m))))) : null;
+  });
+  return recs;
+}
+
+function setSubLine(){
+  document.getElementById('subLine').innerHTML =
+    'Individual sprint scores &middot; Sprint '+SPRINTS[0].slice(1)+'&ndash;'+SPRINTS[SPRINTS.length-1].slice(1)+
+    ' ('+SPRINTS.length+' sprints) &middot; '+RECORDS.length+' engineers &middot; '+
+    'Bands: &ge;8 Outstanding &middot; 6&ndash;8 Exceeds &middot; 5&ndash;6 Meets &middot; &lt;5 Needs Improvement';
+}
+
+function band(a){
+  if(a==null) return {key:"na",label:"N/A",cls:""};
+  if(a>=8) return {key:"out",label:"Outstanding",cls:"p-out"};
+  if(a>=6) return {key:"exc",label:"Exceeds",cls:"p-exc"};
+  if(a>=5) return {key:"meet",label:"Meets",cls:"p-meet"};
+  return {key:"ni",label:"Needs Improvement",cls:"p-ni"};
+}
+function uniq(arr){return [...new Set(arr)].sort();}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function fillSelect(el, items, allLabel){
+  el.innerHTML = '<option value="">'+allLabel+'</option>' + items.map(i=>'<option>'+esc(i)+'</option>').join('');
+}
+function initFilters(){
+  fillSelect(document.getElementById('fDesig'), uniq(RECORDS.map(r=>r.designation)), 'All designations');
+  fillSelect(document.getElementById('fTeam'), uniq(RECORDS.map(r=>r.team)), 'All teams');
+  document.getElementById('fRating').innerHTML =
+    '<option value="">All ratings</option><option value="out">Outstanding</option><option value="exc">Exceeds</option><option value="meet">Meets</option><option value="ni">Needs Improvement</option>';
+  ['fDesig','fTeam','fRating','fTenure'].forEach(id=>document.getElementById(id).onchange=render);
+  document.getElementById('fSearch').oninput=render;
+}
+function resetFilters(){
+  ['fDesig','fTeam','fRating','fTenure'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fSearch').value=''; render();
+}
+function getFiltered(){
+  const d=document.getElementById('fDesig').value, t=document.getElementById('fTeam').value,
+        rt=document.getElementById('fRating').value, tn=document.getElementById('fTenure').value,
+        q=document.getElementById('fSearch').value.toLowerCase().trim();
+  return RECORDS.filter(r=>
+    (!d||r.designation===d) && (!t||r.team===t) &&
+    (!rt||band(r.average).key===rt) &&
+    (!tn || (tn==='new'? r.sprintsCounted<6 : r.sprintsCounted>=+tn)) &&
+    (!q||r.name.toLowerCase().includes(q)));
+}
+
+function render(){
+  const rows = getFiltered();
+  renderNote(); renderCards(rows); renderTable(rows);
+  renderDesigChart(rows); renderDistChart(rows); renderTeamChart(rows); renderTrendChart(rows); renderMoveChart(rows);
+}
+
+function renderNote(){
+  const bad = RECORDS.filter(r=>r.sheetAvg!=null && r.average!=null && Math.abs(r.sheetAvg-r.average)>0.02);
+  const el = document.getElementById('dq');
+  if(!bad.length){el.innerHTML=''; return;}
+  el.innerHTML = '<div class="note"><b>Data check:</b> '+bad.length+' row'+(bad.length>1?'s':'')+
+    ' in the master sheet had an average that does not match the sprint scores &mdash; '+
+    bad.map(r=>esc(r.name)+' (sheet '+r.sheetAvg.toFixed(2)+', recalculated '+r.average.toFixed(2)+')').join('; ')+
+    '. This dashboard uses the recalculated figure. Worth fixing the formula in the source sheet.</div>';
+}
+
+function renderCards(rows){
+  const avgs = rows.map(r=>r.average).filter(v=>v!=null);
+  const orgAvg = avg(avgs);
+  const latest = SPRINTS[SPRINTS.length-1];
+  const latestVals = rows.map(r=>r.scores[latest]).filter(v=>v!=null);
+  const latestAvg = avg(latestVals);
+  const counts = {out:0,exc:0,meet:0,ni:0};
+  rows.forEach(r=>{const b=band(r.average).key; if(counts[b]!=null)counts[b]++;});
+  const n=rows.length, pct=x=> n? Math.round(x/n*100) : 0;
+  const c=[
+    {k:'Engineers',v:n,d:'in current view',cls:''},
+    {k:'Org avg score',v:orgAvg!=null?orgAvg.toFixed(2):'—',d:'out of 10, all sprints',cls: orgAvg>=8?'green':(orgAvg>=6?'':(orgAvg>=5?'amber':'red'))},
+    {k:latest+' avg',v:latestAvg!=null?latestAvg.toFixed(2):'—',d:latestVals.length+' scored latest sprint',cls: latestAvg>=8?'green':(latestAvg>=6?'':'amber')},
+    {k:'Outstanding',v:counts.out+' ('+pct(counts.out)+'%)',d:'≥8.0',cls:'green'},
+    {k:'Exceeds or better',v:(counts.out+counts.exc)+' ('+pct(counts.out+counts.exc)+'%)',d:'≥6.0',cls:'green'},
+    {k:'Meets',v:counts.meet+' ('+pct(counts.meet)+'%)',d:'5.0–5.9',cls:'amber'},
+    {k:'Needs improvement',v:counts.ni+' ('+pct(counts.ni)+'%)',d:'<5.0',cls: counts.ni? 'red':'green'},
+  ];
+  document.getElementById('cards').innerHTML = c.map(x=>
+    '<div class="card '+x.cls+'"><div class="k">'+x.k+'</div><div class="v">'+x.v+'</div><div class="d">'+x.d+'</div></div>').join('');
+}
+
+function mom(v){
+  if(v==null) return '<span class="flat">—</span>';
+  if(v>0.05) return '<span class="up">▲ +'+v.toFixed(2)+'</span>';
+  if(v<-0.05) return '<span class="down">▼ '+v.toFixed(2)+'</span>';
+  return '<span class="flat">– 0.00</span>';
+}
+
+function renderTable(rows){
+  rows = rows.slice().sort((a,b)=>{
+    let va,vb;
+    if(sortKey==='rating'){va=a.average??-1; vb=b.average??-1;}
+    else {va=a[sortKey]; vb=b[sortKey];}
+    if(typeof va==='string'){return va.localeCompare(vb)*sortDir;}
+    return ((va??(sortDir===1?1e9:-1))-(vb??(sortDir===1?1e9:-1)))*sortDir;
+  });
+  document.getElementById('rowCount').textContent='('+rows.length+' shown)';
+  document.querySelector('#tbl tbody').innerHTML = rows.map(r=>{
+    const b=band(r.average);
+    return '<tr tabindex="0" onclick="openPerson('+RECORDS.indexOf(r)+')" onkeydown="if(event.key===\'Enter\')openPerson('+RECORDS.indexOf(r)+')">'+
+      '<td class="num"><span class="rk">'+(r.rank??'—')+'</span></td>'+
+      '<td>'+esc(r.name)+'</td><td>'+esc(r.team)+'</td><td>'+esc(r.designation)+'</td>'+
+      '<td class="num">'+r.sprintsCounted+'</td>'+
+      '<td class="num">'+(r.total!=null?r.total.toFixed(2):'—')+'</td>'+
+      '<td class="num"><b>'+(r.average!=null?r.average.toFixed(2):'—')+'</b></td>'+
+      '<td class="num">'+(r.last3!=null?r.last3.toFixed(2):'—')+'</td>'+
+      '<td class="num">'+mom(r.momentum)+'</td>'+
+      '<td><span class="pill '+b.cls+'">'+b.label+'</span></td></tr>';
+  }).join('');
+}
+document.querySelectorAll('#tbl th').forEach(th=>{
+  th.onclick=()=>{const k=th.dataset.k; if(!k)return;
+    if(sortKey===k)sortDir*=-1;
+    else{sortKey=k;sortDir=(k==='name'||k==='team'||k==='designation'||k==='rank')?1:-1;}
+    render();};
+});
+
+function destroy(id){if(charts[id]){charts[id].destroy();}}
+const noAsp={maintainAspectRatio:false};
+
+function renderDesigChart(rows){
+  const order=['Team Lead','SSE','SE','ASE'];
+  const g={}; rows.forEach(r=>{(g[r.designation]=g[r.designation]||[]).push(r.average);});
+  const labels=Object.keys(g).sort((a,b)=>{const ia=order.indexOf(a),ib=order.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib);});
+  const vals=labels.map(l=>{const v=avg(g[l].filter(x=>x!=null));return v?+v.toFixed(2):0;});
+  const heads=labels.map(l=>g[l].length);
+  destroy('chDesig');
+  charts.chDesig=new Chart(document.getElementById('chDesig'),{type:'bar',
+    data:{labels,datasets:[{data:vals,backgroundColor:'#0F6E78',borderRadius:5}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:(c)=>heads[c.dataIndex]+' engineer(s)'}}},
+      scales:{y:{beginAtZero:true,max:10}},...noAsp}});
+}
+function renderDistChart(rows){
+  const counts={Outstanding:0,Exceeds:0,Meets:0,'Needs Improvement':0};
+  rows.forEach(r=>{const l=band(r.average).label; if(counts[l]!=null)counts[l]++;});
+  destroy('chDist');
+  charts.chDist=new Chart(document.getElementById('chDist'),{type:'doughnut',
+    data:{labels:Object.keys(counts),datasets:[{data:Object.values(counts),
+      backgroundColor:['#1E8E4E','#0F6E78','#C8881A','#C0392B']}]},
+    options:{plugins:{legend:{position:'right'}},...noAsp}});
+}
+function renderTeamChart(rows){
+  const g={}; rows.forEach(r=>{(g[r.team]=g[r.team]||[]).push(r.average);});
+  const pairs=Object.keys(g).map(l=>[l, avg(g[l].filter(x=>x!=null))||0, g[l].length]).sort((a,b)=>b[1]-a[1]);
+  destroy('chTeam');
+  charts.chTeam=new Chart(document.getElementById('chTeam'),{type:'bar',
+    data:{labels:pairs.map(p=>p[0]),datasets:[{data:pairs.map(p=>+p[1].toFixed(2)),backgroundColor:'#13909c',borderRadius:4}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},
+      tooltip:{callbacks:{afterLabel:(c)=>pairs[c.dataIndex][2]+' engineer(s)'}}},
+      scales:{x:{beginAtZero:true,max:10}},...noAsp}});
+}
+function renderTrendChart(rows){
+  const vals=SPRINTS.map(sp=>{const a=rows.map(r=>r.scores[sp]).filter(v=>v!=null);return a.length? +(avg(a).toFixed(2)):null;});
+  const heads=SPRINTS.map(sp=>rows.filter(r=>r.scores[sp]!=null).length);
+  destroy('chTrend');
+  charts.chTrend=new Chart(document.getElementById('chTrend'),{type:'line',
+    data:{labels:SPRINTS,datasets:[{data:vals,borderColor:'#0F6E78',backgroundColor:'rgba(15,110,120,.12)',
+      fill:true,tension:.3,spanGaps:true,pointRadius:4,pointBackgroundColor:'#10233F'}]},
+    options:{plugins:{legend:{display:false},
+      tooltip:{callbacks:{afterLabel:(c)=>heads[c.dataIndex]+' engineer(s) scored'}}},
+      scales:{y:{min:0,max:10}},...noAsp}});
+}
+function renderMoveChart(rows){
+  const el=document.getElementById('chMove');
+  const pool=rows.filter(r=>r.momentum!=null).sort((a,b)=>b.momentum-a.momentum);
+  destroy('chMove');
+  if(!pool.length){
+    const ctx=el.getContext('2d'); ctx.clearRect(0,0,el.width,el.height);
+    ctx.fillStyle='#5A6470'; ctx.font='13px sans-serif'; ctx.textAlign='center';
+    ctx.fillText('No engineer in this view has 6+ scored sprints to compare.', el.width/2, 40);
+    return;
+  }
+  const take = pool.length<=14? pool : pool.slice(0,7).concat(pool.slice(-7));
+  charts.chMove=new Chart(el,{type:'bar',
+    data:{labels:take.map(r=>r.name),datasets:[{data:take.map(r=>r.momentum),
+      backgroundColor:take.map(r=>r.momentum>=0?'#1E8E4E':'#C0392B'),borderRadius:4}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false},
+      tooltip:{callbacks:{label:(c)=>{const r=take[c.dataIndex];
+        return (r.momentum>=0?'+':'')+r.momentum.toFixed(2)+'  ('+r.prior3.toFixed(2)+' → '+r.last3.toFixed(2)+')';}}}},
+      scales:{x:{title:{display:true,text:'Change in average score'},grid:{color:(c)=>c.tick.value===0?'#10233F':'rgba(0,0,0,.06)'}}},...noAsp}});
+}
+
+function openPerson(idx){
+  const r=RECORDS[idx]; const b=band(r.average);
+  document.getElementById('modal').innerHTML='<button class="close" onclick="closeModal()" aria-label="Close">&times;</button>'+
+    '<h2>'+esc(r.name)+'</h2><div class="meta">'+esc(r.designation)+' &middot; '+esc(r.team)+
+      ' &middot; Overall rank '+(r.rank??'—')+' of '+RECORDS.length+'</div>'+
+    '<div class="mini">'+
+      '<div><div class="k">Avg</div><div class="v">'+(r.average!=null?r.average.toFixed(2):'—')+'</div></div>'+
+      '<div><div class="k">Total</div><div class="v">'+(r.total!=null?r.total.toFixed(2):'—')+'</div></div>'+
+      '<div><div class="k">Sprints</div><div class="v">'+r.sprintsCounted+'</div></div>'+
+      '<div><div class="k">Rating</div><div class="v" style="font-size:13px"><span class="pill '+b.cls+'">'+b.label+'</span></div></div>'+
+      '<div><div class="k">Last 3</div><div class="v">'+(r.last3!=null?r.last3.toFixed(2):'—')+'</div></div>'+
+      '<div><div class="k">Momentum</div><div class="v" style="font-size:15px">'+mom(r.momentum)+'</div></div>'+
+      '<div><div class="k">Best / worst</div><div class="v" style="font-size:15px">'+(r.best!=null?r.best.toFixed(2)+' / '+r.worst.toFixed(2):'—')+'</div></div>'+
+      '<div><div class="k">Variability</div><div class="v" style="font-size:15px">'+(r.spread!=null?'±'+r.spread.toFixed(2):'—')+'</div></div>'+
+    '</div>'+
+    '<div class="chart-wrap tall"><canvas id="chPerson"></canvas></div>'+
+    '<div class="legend">Dashed line = org average per sprint. Gaps are sprints marked RUN or N/A'+
+      (r.runSprints? ' ('+r.runSprints+' RUN sprint'+(r.runSprints>1?'s':'')+' for this engineer)':'')+'.</div>';
+  document.getElementById('modalBg').classList.add('show');
+  const orgVals=SPRINTS.map(sp=>{const a=RECORDS.map(x=>x.scores[sp]).filter(v=>v!=null);return a.length?+(avg(a).toFixed(2)):null;});
+  destroy('chPerson');
+  charts.chPerson=new Chart(document.getElementById('chPerson'),{type:'line',
+    data:{labels:SPRINTS,datasets:[
+      {label:r.name,data:SPRINTS.map(sp=>r.scores[sp]),borderColor:'#0F6E78',
+        backgroundColor:'rgba(15,110,120,.12)',fill:true,tension:.3,spanGaps:true,pointRadius:5,pointBackgroundColor:'#10233F'},
+      {label:'Org average',data:orgVals,borderColor:'#C8881A',borderDash:[5,4],borderWidth:2,
+        fill:false,tension:.3,spanGaps:true,pointRadius:0}]},
+    options:{plugins:{legend:{position:'bottom'}},scales:{y:{min:0,max:10}},...noAsp}});
+  document.querySelector('#modal .close').focus();
+}
+function closeModal(){document.getElementById('modalBg').classList.remove('show'); destroy('chPerson');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ---- Reload from an updated master sheet (same layout) ---- */
+function num(x){x=(x||'').toString().trim();
+  if(['','RUN','N/A','NA','-','#DIV/0!'].includes(x))return null;
+  const n=parseFloat(x.replace(/,/g,''));return isNaN(n)?null:n;}
+
+function parseMasterSheet(text){
+  const rows=Papa.parse(text,{skipEmptyLines:false}).data;
+  let hi=-1;
+  for(let i=0;i<Math.min(rows.length,10);i++){
+    if(rows[i].some(c=>/^designation$/i.test((c||'').trim())) && rows[i].some(c=>/^S\d+$/.test((c||'').trim()))){hi=i;break;}
+  }
+  if(hi<0) throw new Error('Could not find the header row with "Designation" and sprint columns (S122, S123, …).');
+  const hdr=rows[hi].map(c=>(c||'').trim());
+  const sprintCols=[]; hdr.forEach((c,i)=>{if(/^S\d+$/.test(c))sprintCols.push([i,c]);});
+  const nameCol=hdr.findIndex(c=>/^resources?$/i.test(c));
+  const teamCol=hdr.findIndex(c=>/^teams?$/i.test(c));
+  const desigCol=hdr.findIndex(c=>/^designation$/i.test(c));
+  const avgCol=hdr.findIndex(c=>/^average$/i.test(c));
+  if(nameCol<0||desigCol<0) throw new Error('Missing a "Resources" or "Designation" column.');
+
+  // Overall Ranking block, if present
+  const rankNameCol=hdr.length, ranks={};
+  let rr=-1, rc=-1;
+  rows.slice(0,10).forEach((row,i)=>row.forEach((c,j)=>{if(/^overall ranking$/i.test((c||'').trim())&&rr<0){rr=i;rc=j;}}));
+  if(rr>=0){
+    const nmCol=rows[rr].findIndex(c=>/^name$/i.test((c||'').trim()));
+    if(nmCol>=0) rows.forEach(row=>{
+      const nm=(row[nmCol]||'').trim(), v=num(row[rc]);
+      if(nm&&v!=null) ranks[nm]=v;
+    });
+  }
+
+  const SECTIONS=new Set(['TEAM LEAD','SSE','SE','ASE','QA','BA','LEAD']);
+  const out=[];
+  for(let i=hi+1;i<rows.length;i++){
+    const row=rows[i]; if(!row) continue;
+    const name=(row[nameCol]||'').trim(), desig=(row[desigCol]||'').trim();
+    if(!name||!desig) continue;
+    if(SECTIONS.has(name.toUpperCase())) continue;
+    const scores={}; let runs=0;
+    sprintCols.forEach(([ci,sp])=>{
+      if(((row[ci]||'').trim())==='RUN') runs++;
+      scores[sp]=num(row[ci]);
+    });
+    const vals=Object.values(scores).filter(v=>v!=null);
+    out.push({name,team:(row[teamCol]||'').trim()||'—',designation:desig,scores,
+      sprintsCounted:vals.length,
+      total:vals.length?r2(vals.reduce((a,b)=>a+b,0)):null,
+      average:vals.length?r2(vals.reduce((a,b)=>a+b,0)/vals.length):null,
+      sheetAvg:avgCol>=0?num(row[avgCol]):null,
+      rank:ranks[name]??null, runSprints:runs});
+  }
+  const active=sprintCols.map(([,sp])=>sp).filter(sp=>out.some(r=>r.scores[sp]!=null));
+  out.forEach(r=>{const s={};active.forEach(sp=>s[sp]=r.scores[sp]);r.scores=s;});
+  return {sprints:active, records:out};
+}
+
+document.getElementById('fileInput').addEventListener('change',e=>{
+  const file=e.target.files[0]; if(!file)return;
+  const rd=new FileReader();
+  rd.onload=ev=>{
+    try{
+      const d=parseMasterSheet(ev.target.result);
+      if(!d.records.length) throw new Error('No engineer rows found below the header.');
+      SPRINTS=d.sprints; RECORDS=enrich(d.records);
+      sortKey='rank'; sortDir=1;
+      setSubLine(); initFilters(); resetFilters();
+    }catch(err){alert('Could not read that file. '+err.message);}
+    finally{e.target.value='';}
+  };
+  rd.readAsText(file);
+});
+
+RECORDS = enrich(RAW.records.slice());
+setSubLine(); initFilters(); render();
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "name": "hrm",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cloudtech HRM & Engineering KPI Dashboard",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:perf": "vitest run --config vitest.perf.config.mts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev --create-only",
+    "seed": "tsx --conditions=react-server prisma/seed.ts",
+    "fixtures:generate": "tsx scripts/generate-golden-fixtures.ts",
+    "seed:admin": "tsx --conditions=react-server scripts/seed-admin.ts",
+    "reset:admin": "tsx --conditions=react-server scripts/reset-admin-password.ts",
+    "postinstall": "prisma generate",
+    "verify": "npm run typecheck && npm run lint && npm run test:coverage && npm run build"
+  },
+  "overrides": {
+    "deepmerge-ts": "^8.0.2",
+    "mysql2": "^3.24.6"
+  },
+  "dependencies": {
+    "@node-rs/argon2": "2.2.2",
+    "@prisma/adapter-better-sqlite3": "7.10.0",
+    "@prisma/client": "7.10.0",
+    "better-sqlite3": "12.11.1",
+    "chart.js": "4.5.1",
+    "dotenv": "17.4.2",
+    "next": "16.4.1",
+    "pino": "10.4.0",
+    "react": "19.3.1",
+    "react-chartjs-2": "5.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/better-sqlite3": "9.6.0",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitest/coverage-v8": "5.0.4",
+    "eslint": "10.12.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.13.0",
+    "prisma": "7.10.0",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.2",
+    "vitest": "5.0.4"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true,
+    "prisma@7.10.0": true,
+    "@prisma/engines@7.10.0": true,
+    "esbuild@0.28.2": true,
+    "unrs-resolver@1.12.2": true
+  }
+}

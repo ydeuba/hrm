@@ -1,0 +1,46 @@
+{
+  "description": "Hand-built edge cases for the KPI engine and import parser (E-00-06 AC-4). Cells: number = score, \"RUN\" = run sprint, null = not scored.",
+  "bandFromTwoDecimalAverage": {
+    "why": "Exact average 7.995 displays as 8.00, so the band must be Outstanding (ADR-016).",
+    "cells": [8.0, 7.99],
+    "expected": { "total": 15.99, "exactAverage": 7.995, "displayAverage": 8.0, "band": "out" }
+  },
+  "bandJustBelowBoundary": {
+    "why": "Exact average 7.9933… displays as 7.99, so the band is Exceeds.",
+    "cells": [8.0, 7.99, 7.99],
+    "expected": { "displayAverage": 7.99, "band": "exc" }
+  },
+  "exactOrderingBeatsDisplayedTie": {
+    "why": "Both display 9.00; the sheet ranks the exact 9.00 (Mandip) above 8.9956 (Sajjan) — rank on the exact average (ADR-016).",
+    "engineers": [
+      { "name": "Mandip Thapa", "cells": [9.0] },
+      { "name": "Sajjan Khanal", "cells": [7.31, 5.25, 10.0, 9.4, 9.4, 10.0, 10.0, 10.0, 9.6] }
+    ],
+    "expectedOrder": ["Mandip Thapa", "Sajjan Khanal"]
+  },
+  "competitionRankingTie": {
+    "why": "Identical exact average and total share a rank; the next rank is skipped (1, 2, 2, 4).",
+    "engineers": [
+      { "name": "A", "cells": [9.0, 9.0] },
+      { "name": "B", "cells": [8.5, 8.5] },
+      { "name": "C", "cells": [8.0, 9.0] },
+      { "name": "D", "cells": [7.0, 7.0] }
+    ],
+    "expectedRanks": { "A": 1, "B": 2, "C": 2, "D": 4 }
+  },
+  "precisionCell": {
+    "why": "Workbook cell E44 holds 5.975 (displayed 5.98): stored as 598 with a PRECISION_ROUNDED warning. Half-up uses an epsilon because naive Math.round fails for values such as 1.005 (100.4999…).",
+    "raw": 5.975,
+    "expected": { "centi": 598, "warning": "PRECISION_ROUNDED" }
+  },
+  "runOnlyRow": {
+    "why": "RUN cells are excluded from every metric but counted as run sprints.",
+    "cells": ["RUN", "RUN", "RUN"],
+    "expected": { "sprintsCounted": 0, "runSprints": 3, "total": null, "average": null, "band": "na", "last3": null, "momentum": null }
+  },
+  "singleSprintEngineer": {
+    "why": "One scored sprint: averages defined, momentum/prior3/spread undefined.",
+    "cells": [null, "RUN", 6.5],
+    "expected": { "sprintsCounted": 1, "runSprints": 1, "total": 6.5, "average": 6.5, "last3": 6.5, "prior3": null, "momentum": null, "best": 6.5, "worst": 6.5, "spread": null, "band": "exc" }
+  }
+}

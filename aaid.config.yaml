@@ -1,0 +1,55 @@
+project:
+  name: "hrm"
+  language: "typescript"
+  framework: "nextjs"
+  patterns:
+    - clean-architecture
+
+agents:
+  enabled:
+    - pm
+    - designer
+    - architect
+    - dev
+    - qa
+    - security
+    - reviewer
+    - docs
+    - devops
+  ai_provider: "claude"
+  model: "claude-sonnet-4-6"
+  # NAME of the env var holding your API key — never the key itself.
+  # Alternative: api_key_command: "op read op://Vault/key" (secret manager).
+  api_key_env: "ANTHROPIC_API_KEY"
+
+standards:
+  enforce: "strict"
+  rules: []
+
+gates:
+  maxRetries: 3
+  design_review:
+    enabled: true
+    blocking: true
+    require_adr: true
+  ux_review:
+    enabled: true
+    blocking: true
+    require_accessibility: true
+  code_standards:
+    enabled: true
+    blocking: true
+    max_lint_errors: 0
+    max_complexity: 10
+  test_coverage:
+    enabled: true
+    blocking: true
+    minimum_coverage: 80
+    require_unit_tests: true
+    require_integration_tests: true
+  security_scan:
+    enabled: true
+    blocking: true
+    fail_on:
+      - critical
+      - high
